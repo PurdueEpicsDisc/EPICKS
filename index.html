@@ -13,7 +13,7 @@
 	</head>
 	<body>
 
-		<div id="splash" class="">
+		<div id="splash" class="">  <!--Landing page with purdue background, fades out  -->
 			<div id="splash-header">
 				<a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
 				<a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
@@ -123,16 +123,27 @@
 
 		<script>
       		$(document).ready(function(){
-				var myDataRef = new Firebase('https://e-picks-purdue.firebaseio.com/');
-      			myDataRef.on('child_added', function(snapshot) {
-        			var team = snapshot.val();
+				var myDataRef = new Firebase('https://e-picks-purdue.firebaseio.com/'); //myDataRef is the firbase object used to do everything Firebase 
+      			myDataRef.on('child_added', function(snapshot) { //every time a new team is added to firebase add it to the website
+        			var team = snapshot.val(); //JSON object of team
         			var aoi_array = team.aoi.split(" ", 1);
         			var aoi_string = aoi_array[0].toLowerCase();
         			displayTeamInfo(team.team_abbrev, team.description, team.aoi, aoi_string, team.day, team.team_name, team.time, team.website, team.time_num);
       			});
 				function displayTeamInfo(abbrev, desc, aoi, string, day, name, time, website, time_num) {
 					$("#team-objects").append(
-						$('<div class="team school--engineering school--science time--'+time_num+' day--'+day+' impact--'+string+'"><div class="team-name" data-field="name">'+name+'<i class="fa fa-chevron-down"></i></div><div class="team-detail"><span class="detail-item detail-item--half detail--acronym" data-field="acronym">'+abbrev+'</span><span class="detail-item detail-item--half detail--impact" data-field="impact">'+aoi+'</span><span class="detail-item detail-item--half detail--day" data-field="day">'+day+'</span><span class="detail-item detail-item--half detail--time" data-field="time">'+time+'</span><span class="detail-item detail--description" data-field="description">'+desc+'</span><span class="detail-item detail--website" data-field="website"><a href="'+website+'">'+website+'</a></span></div></div>')
+						$('<div class="team school--engineering school--science time--'+time_num+' day--'+day+' impact--'+string+'">
+								<div class="team-name" data-field="name">'+name+'
+									<i class="fa fa-chevron-down"></i>
+								</div>
+								<div class="team-detail">
+									<span class="detail-item detail-item--half detail--acronym" data-field="acronym">'+abbrev+'</span>
+									<span class="detail-item detail-item--half detail--impact" data-field="impact">'+aoi+'</span><span class="detail-item detail-item--half detail--day" data-field="day">'+day+'</span>
+									<span class="detail-item detail-item--half detail--time" data-field="time">'+time+'</span>
+									<span class="detail-item detail--description" data-field="description">'+desc+'</span>
+									<span class="detail-item detail--website" data-field="website"><a href="'+website+'">'+website+'</a></span>
+								</div>
+							</div>')
 					);
 				};
 			});
