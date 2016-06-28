@@ -15,21 +15,25 @@
     <button><a href="#" class="enter_link">Login</a></button>
   </center>
     <script type="text/javascript">
-      $('#initialPass').on("keypress", function(e) {
-        if (e.keyCode == 13) {
-            myDataRef.authWithPassword({
-              "email": document.getElementById("initialUser").value,
-              "password": document.getElementById("initialPass").value 
-            }, function(error, authData) {
+      $('#initialPass').on("keypress", function(e) {if (e.keyCode == 13) login() }, function(error, authData) {  //all three braces are part of the on keypress, same below
             if (error) {
             } else {
-              $('#splashscreen').fadeOut(500);
+              $('#splashscreen').fadeOut(500); //div splashcreen on line 6
             }
-        }, {
-        remember: "sessionOnly"
-      });
+        }, {remember: "sessionOnly"});
+
+      $('.enter_link').click(login(), function(error, authData) {
+          if (error) {
+          } else {
+            $('#splashscreen').fadeOut(500);
+          }
+        }, {remember: "sessionOnly"});
+
+      function login() { 
+        myDataRef.authWithPassword({
+          "email": document.getElementById("initialUser").value,
+          "password": document.getElementById("initialPass").value 
         }
-      });
     </script>
     </div>
 </div>
@@ -45,89 +49,89 @@
     $('#splashscreen').fadeOut(500);
   }
 
-	function submit(thing) {
+	function submit(thing) { //add new group function
 
   
-  var team_name = thing.parentElement.children[0].value;
-  var team_abbrev = thing.parentElement.children[2].value;
-  var website = thing.parentElement.children[4].value;
-  var day = thing.parentElement.children[6].value;
-  var time_num = thing.parentElement.children[8].value;
-  switch(time_num){
-    case "1":
-      var time = "8:30 AM - 10:20 AM";
-      break;
-    case "2":
-      var time = "10:30 AM - 12:20 PM";
-      break;
-    case "3":
-      var time = "1:30 PM - 3:20 PM";
-      break;
-    case "4":
-      var time = "3:30 PM - 5:20 PM";
-      break;
-    default:
-      var time = "Other";
-  }
-  var aoi = thing.parentElement.children[10].value;
-  var desc = thing.parentElement.children[13].value;
-  /*  
-  var day = $('#newDay').val();
-  $('#newDay').val('Choose a Day');
-  var desc = $('#newDesc').val();
-  $('#newDesc').val(null);
-  var team_abbrev = $('#newAc').val();
-  $('#newAc').val(null);
-  var team_name = $('#newName').val();
-  $('#newName').val(null);
-  var time_num = $('#newTime').val();
-  $('#newTime').val('Choose a Time');
-  switch(time_num){
-    case "1":
-      var time = "8:30 AM - 10:20 AM";
-      break;
-    case "2":
-      var time = "10:30 AM - 12:20 PM";
-      break;
-    case "3":
-      var time = "1:30 PM - 3:20 PM";
-      break;
-    case "4":
-      var time = "3:30 PM - 5:20 PM";
-      break;
-    default:
-      var time = "Something is messed up";
-  }
-  var website = $('#newWebsite').val();
-  $('#newWebsite').val(null);
-  var aoi = $('#newAOI').val();
-  $('#newAOI').val('Choose an Area');
-  */
+    var team_name = thing.parentElement.children[0].value;
+    var team_abbrev = thing.parentElement.children[2].value;
+    var website = thing.parentElement.children[4].value;
+    var day = thing.parentElement.children[6].value;
+    var time_num = thing.parentElement.children[8].value;
+    switch(time_num){
+      case "1":
+        var time = "8:30 AM - 10:20 AM";
+        break;
+      case "2":
+        var time = "10:30 AM - 12:20 PM";
+        break;
+      case "3":
+        var time = "1:30 PM - 3:20 PM";
+        break;
+      case "4":
+        var time = "3:30 PM - 5:20 PM";
+        break;
+      default:
+        var time = "Other";
+    }
+    var aoi = thing.parentElement.children[10].value;
+    var desc = thing.parentElement.children[13].value;
+    /*  
+    var day = $('#newDay').val();
+    $('#newDay').val('Choose a Day');
+    var desc = $('#newDesc').val();
+    $('#newDesc').val(null);
+    var team_abbrev = $('#newAc').val();
+    $('#newAc').val(null);
+    var team_name = $('#newName').val();
+    $('#newName').val(null);
+    var time_num = $('#newTime').val();
+    $('#newTime').val('Choose a Time');
+    switch(time_num){
+      case "1":
+        var time = "8:30 AM - 10:20 AM";
+        break;
+      case "2":
+        var time = "10:30 AM - 12:20 PM";
+        break;
+      case "3":
+        var time = "1:30 PM - 3:20 PM";
+        break;
+      case "4":
+        var time = "3:30 PM - 5:20 PM";
+        break;
+      default:
+        var time = "Something is messed up";
+    }
+    var website = $('#newWebsite').val();
+    $('#newWebsite').val(null);
+    var aoi = $('#newAOI').val();
+    $('#newAOI').val('Choose an Area');
+    */
 
 
-  //alert(day + "  "+ desc + "  "+ team_abbrev + "  "+ team_name +  "  " + time + "  " + time_num + "  " + website);
+    //alert(day + "  "+ desc + "  "+ team_abbrev + "  "+ team_name +  "  " + time + "  " + time_num + "  " + website);
 
-  var tempRef = myDataRef.child(team_abbrev);
+    var tempRef = myDataRef.child(team_abbrev); //myDataRef is the Firebase object and this adds a new child titled with the description field.
 
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    x = "Team Deleted";
-  } else {
-    return;
-  }
+    /*var r = confirm("Are you sure?");
+    if (r == true) {
+      x = "Team Deleted";
+    } else {
+      return;
+    } */
 
-  tempRef.update({
-     aoi: aoi,
-     day: day,
-     description: desc,
-     team_abbrev: team_abbrev,
-     team_name: team_name,
-     time: time,
-     time_num: time_num,
-     website: website
-  });
+    tempRef.update({ //update function makes changes to JSON fields
+       aoi: aoi,
+       day: day,
+       description: desc,
+       team_abbrev: team_abbrev,
+       team_name: team_name,
+       time: time,
+       time_num: time_num,
+       website: website
+    });
 
-  document.location.reload(true);
+    document.location.reload(true); 
 }
 
 function logout() {
@@ -135,7 +139,7 @@ function logout() {
   document.location.reload(true);
 }
 
-function goodbye(abbrev) {
+function goodbye(abbrev) { //other function names might conflict with standard names
   //alert(abbrev);
 
   var r = confirm("Are you sure?");
@@ -167,22 +171,9 @@ function edit(abbrev) {
   });
 
   $("#" + abbrev).remove();
+  //The below should be replaced with the new edit form
   $("#" + abbrev + "outer").append($('<div>Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamName" id="newName'+acc+'" value="'+name+'"><br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamAcronym" id="newAc'+acc+'" value="'+acc+'"><br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Website" value="'+web+'" id="newWebsite'+acc+'"><br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="newDay'+acc+'"><option>'+day+'</option><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option></select><br> Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select value="'+time+'" id = "newTime'+acc+'">  <option value="1">8:30 AM - 10:20 AM</option><option value="2">10:30 AM - 12:20 PM</option><option value="3">1:30 PM - 3:20 PM</option><option value="4">3:30 PM - 5:20 PM</option><option value="5">Other</option></select><br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id = "newAOI'+acc+'"><option>'+aoi+'</option><option value="Access & Abilities">Access & Abilities</option><option value="Education & Outreach">Education & Outreach</option><option value="Environment">Environment</option><option value="Human Services">Human Services</option></select><br>Description:<br> <TEXTAREA NAME="Description" id="newDesc'+acc+'" ROWS=5 COLS=50 >'+desc+'</textarea><br><input type="submit" onclick="submit(this)" value="Submit">'));
 }
-
-	$('.enter_link').click(function () {
-    myDataRef.authWithPassword({
-      "email": document.getElementById("initialUser").value,
-      "password": document.getElementById("initialPass").value 
-    }, function(error, authData) {
-      if (error) {
-      } else {
-        $('#splashscreen').fadeOut(500);
-      }
-    }, {
-        remember: "sessionOnly"
-      });
-	});
 
 	myDataRef.on('child_added', function(snapshot) {
   	var team = snapshot.val();
@@ -190,14 +181,28 @@ function edit(abbrev) {
   	});
 
   	function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) {
-    	$("#team-objects").append(
-      	$('<div id="'+abbrev+'outer" style="background-color:#f0f0f0; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;"><div id="'+abbrev+'"> Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ name + "<br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  abbrev + "<br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + website +"<br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + day +"<br>Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + time +"<br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + aoi + '<br>Description:<br>' + desc + '<br><input type="submit" value="Edit" onclick="edit(\''+abbrev+'\')"><input type="submit" value="Delete" onclick="goodbye(\''+abbrev+'\')"></div></div>')
+    	$("#team-objects").append( //unholy mess, need to fix this with some css
+      	$(
+          '<div id="'+abbrev+'outer" style="background-color:#f0f0f0; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;">
+            <div id="'+abbrev+'">  
+              Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ name + "<br>
+              Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  abbrev + "<br>
+              Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + website +"<br>
+              Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + day +"<br>
+              Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + time +"<br>Area of 
+              Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + aoi + '<br>
+              Description:<br>' + desc + '<br>
+              <input type="submit" value="Edit" onclick="edit(\''+abbrev+'\')">
+              <input type="submit" value="Delete" onclick="goodbye(\''+abbrev+'\')">
+            </div>
+          </div>')
     );
   };
 
 </script>
 
-<style>
+<!-- add to the css here -->
+<style> 
 body {
     background-color:white;
 }
@@ -214,8 +219,10 @@ body {
 }
 </style>
 
+<!--ToDo: put all the html stuff here -->
+
 <div>
-	<div style="background-color:#808080; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;">
+	<div style="background-color:#808080; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;"> <!--Form for adding new team -->
 
 Team Name:
 &nbsp;&nbsp;&nbsp;
@@ -287,6 +294,6 @@ Description:<br>
 <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></textarea><br>
 <input type="submit" value="Submit" onclick="submit(this)">
 
-</div>
+</div> <!-- all the teams are going here, change from all to just search results here. -->
     <div id="team-objects"></div>
 </div>

@@ -130,7 +130,7 @@
         			var aoi_string = aoi_array[0].toLowerCase();
         			displayTeamInfo(team.team_abbrev, team.description, team.aoi, aoi_string, team.day, team.team_name, team.time, team.website, team.time_num);
       			});
-				function displayTeamInfo(abbrev, desc, aoi, string, day, name, time, website, time_num) {
+				function displayTeamInfo(abbrev, desc, aoi, string, day, name, time, website, time_num) { //The in line 
 					$("#team-objects").append(
 						$('<div class="team school--engineering school--science time--'+time_num+' day--'+day+' impact--'+string+'">
 								<div class="team-name" data-field="name">'+name+'
@@ -150,6 +150,10 @@
     	</script>
 
 		<script>
+			$('#search').click(function() {
+				
+			})
+
 			//$('#sidebar').slideUp();
 			$('#splash-start').click(function() {
 				$('#splash').fadeOut();

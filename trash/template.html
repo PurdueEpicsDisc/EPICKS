@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans|Lora' rel='stylesheet' type='text/css'>
+
+		<title>EPICS | explorer</title>
+
+		<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all' />
+		<link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
+
+		<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mixitup.js"></script>
+
+		<script>
+		</script>
+		
+	</head>
+	<body>
+
+		<div id="splash" class="">
+			<div id="splash-header">
+				<a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
+				<a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
+			</div>
+
+			<span class="splash-headline">Welcome to the<span class="splash-headline--keyword lowercase"> explorer</span>.</span>
+
+			<span class="splash-intro">Let us help you find a team to learn, grow, and thrive in.</span>
+
+			<div id="splash-start" class="uppercase">Let's get started</div>
+		</div>
+
+		<div class="container">
+
+			<i id="search-icon" class="fa fa-search"></i>
+
+			<div id="search">
+				<input type="text" placeholder="Search for..." id="search-bar">
+			</div>
+
+			<div id="sidebar">
+				<img class="sidebar-image" src="images/EPICS.png" />
+				<span class="sidebar-title lowercase">e x p l o r e r</span>
+
+				<div class="sidebar-item sidebar-item--school uppercase" data-field="school" data-filter="all">
+					<span class="sidebar-item-title">School</span>
+					<span class="sidebar-item-object" data-school="All" >All</span>
+				</div>
+
+				<div class="sidebar-item sidebar-item--major uppercase" data-field="major" data-filter="all">
+					<span class="sidebar-item-title">Major</span>
+					<span class="sidebar-item-object" data-major="All">All</span>
+				</div>
+
+				<div class="sidebar-item sidebar-item--day uppercase" data-field="day" data-filter="all">
+					<span class="sidebar-item-title">Day</span>
+					<span class="sidebar-item-object" data-day="All">All</span>
+				</div>
+
+				<div class="sidebar-item sidebar-item--time uppercase" data-field="time" data-filter="all">
+					<span class="sidebar-item-title">Time</span>
+					<span class="sidebar-item-object" data-time="All">All</span>
+				</div>
+
+				<div class="sidebar-item sidebar-item--impact uppercase" data-field="impact" data-filter="all">
+					<span class="sidebar-item-title">Area of Impact</span>
+					<span class="sidebar-item-object" data-impact="All">All</span>
+				</div>
+
+			</div>
+			
+			
+			<div id="expansion" class="uppercase">
+				
+				<div class="expansion-item expansion-item--school" data-field="school">
+					<div class="expansion-item-title">Please select a school</div>
+					<div class="expansion-item-object" data-school="Agriculture" data-filter=".school--agriculture">College of Agriculture</div>
+					<div class="expansion-item-object" data-school="Education" data-filter=".school--education">College of Education</div>
+					<div class="expansion-item-object" data-school="Engineering" data-filter=".school--engineering">College of Engineering</div>
+					<div class="expansion-item-object" data-school="Health & Human Sciences" data-filter=".school--health">College of Health & Human Sciences</div>
+					<div class="expansion-item-object" data-school="Liberal Arts" data-filter=".school--liberal-arts">College of Liberal Arts</div>
+					<div class="expansion-item-object" data-school="Management" data-filter=".school--krannert">Krannert School of Management</div>
+					<div class="expansion-item-object" data-school="Pharmacy" data-filter=".school--pharmacy">College of Pharmacy</div>
+					<div class="expansion-item-object" data-school="Science" data-filter=".school--science">College of Science</div>
+					<div class="expansion-item-object" data-school="Technology" data-filter=".school--technology">College of Technology</div>
+					<div class="expansion-item-object" data-school="Veterinary Medicine" data-filter=".school--veterinary-medicine">College of Veterinary Medicine</div>
+					<div class="expansion-item-object active" data-school="All" data-filter="all">Show All</div>
+				</div>
+				
+				<div class="expansion-item expansion-item--major" data-field="major">
+					<div class="expansion-item-title">Please select a major</div>
+					<div class="expansion-item-object"></div>
+				</div>
+				
+				<div class="expansion-item expansion-item--day" data-field="day">
+					<div class="expansion-item-title">Please select a day</div>
+					<div class="expansion-item-object" data-day="Monday" data-filter=".day--monday">Monday</div>
+					<div class="expansion-item-object" data-day="Tuesday" data-filter=".day--tuesday">Tuesday</div>
+					<div class="expansion-item-object" data-day="Wednesday" data-filter=".day--wednesday">Wednesday</div>
+					<div class="expansion-item-object" data-day="Thursday" data-filter=".day--thursday">Thursday</div>
+					<div class="expansion-item-object" data-day="Friday" data-filter=".day--friday">Friday</div>
+					<div class="expansion-item-object active" data-day="All" data-filter="all">Show All</div>
+					
+				</div>
+				
+				<div class="expansion-item expansion-item--time" data-field="time">
+					<div class="expansion-item-title">Please select a time</div>
+					<div class="expansion-item-object" data-time="8:30 AM - 10:20 AM" data-filter=".time--1">8:30 AM - 10:20 AM</div>
+					<div class="expansion-item-object" data-time="10:30 AM - 12:20 PM" data-filter=".time--2">10:30 AM - 12:20 PM</div>
+					<div class="expansion-item-object" data-time="1:30 PM - 3:20 PM" data-filter=".time--3">1:30 PM - 3:20 PM</div>
+					<div class="expansion-item-object" data-time="3:30 PM - 5:20 PM" data-filter=".time--4">3:30 PM - 5:20 PM</div>
+					<div class="expansion-item-object active" data-time="All"  data-filter="all">Show All</div>
+					
+				</div>
+				
+				<div class="expansion-item expansion-item--impact" data-field="impact">
+					<div class="expansion-item-title">Please select an area of impact</div>
+					<div class="expansion-item-object" data-impact="Access & Abilities" data-filter=".impact--access-abilities">Access & Abilities</div>
+					<div class="expansion-item-object" data-impact="Education & Outreach" data-filter=".impact--education-outreach">Education & Outreach</div>
+					<div class="expansion-item-object" data-impact="Environment" data-filter=".impact--environment">Environment</div>
+					<div class="expansion-item-object" data-impact="Human Services" data-filter=".impact--human-services">Human Services</div>
+					<div class="expansion-item-object active" data-impact="All" data-filter="all">Show All</div>
+					
+				</div>
+			</div>
+			
+
+			<div id="team-objects">
+
+				<div class="team school--engineering school--science time--1 day--thursday impact--human-services">
+					<div class="team-name" data-field="name">
+						Web-based Interactive Software Engineering
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">WISE</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:30 AM</span>
+						<span class="detail-item detail--description" data-field="description">The WISE team creates web-based applications meant to coordinate and inform their project partners' members, volunteers, and users. The applications are easy to use while still implementing requested functionality. This provides value to the users by simplifying and expanding current outdated processes without being overwhelming.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">Programming, Website development, Database</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/wise/">http://epics.ecn.purdue.edu/wise/</a></span>
+					</div>
+				</div>
+
+				<div class="team school--engineering time--1 day--thursday impact--human-services">
+					<div class="team-name">
+						Electric Vehicle Event Infrastructure
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">EVEI</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:30 AM</span>
+						<span class="detail-item detail--description" data-field="description">This course is a project-based design course to develop the core infrastructure required to establish the Purdue Electric Vehicle Kart event.  This project will explore and recommend electric go-kart design specifications, track and safety requirements, and race scoring. This Multidisciplinary team will be using the EPICS Human Center Design Process to achieve the project deliverables. This project team will be making recommendations for the prototype electric vehicle go-kart event.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">Electronics, Circuits</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/evei/">http://epics.ecn.purdue.edu/evei/</a></span>
+					</div>
+				</div>
+
+				<div class="team school--engineering school--agriculture school--architecture time--4 day--wednesday impact--environment">
+					<div class="team-name">
+						Environmental Improvement Initiatives
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">EII</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Environment</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">3:30 PM - 5:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">This team will encourage students to develop sustainable projects within the community and the University through environmentally centered projects that help students gain real world experience while still in a college environment.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">Water Chemistry Testing, Energy Assessment, Hydraulic Modelling</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/eii/">http://epics.ecn.purdue.edu/eii/</a></span>
+					</div>
+				</div>
+			
+				<div class="team school--engineering school--science time--3 day--wednesday impact--human-services">
+					<div class="team-name">
+						Greater Lafayette Area Special Services
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">GLASS</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">The GLASS team develops, electromechanical and software solutions (iPad APPs) which enable students with disabilities ages 3 to 21 to function more independently and to enjoy a better quality of life. This includes projects aimed to accomplish daily living tasks, assist with communication or to help participate in educational or recreational activities.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">iOS Programming Experience, Electronic Skills (Raspberry Pi), Hardware Skills, Electromechanical Systems, Mechanical Hardware</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/glass/">http://epics.ecn.purdue.edu/glass/</a></span>
+					</div>
+				</div>
+			
+				<div class="team school--engineering time--3 day--tuesday impact--human-services">
+					<div class="team-name">
+						Imagination Station
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">IS</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Tuesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Applying new and innovative technologies, the team designs interactive and fun exhibits for children museums. Active projects include: Mars Rover and Laser Harp. Individuals on the team come from a diverse background of majors which allows us to not only stimulate children's interest but to educate them in a number of different fields as well. The projects grant great exposure to digital design opportunities as well as manufacturing.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">Circuits, Mechanical Assembly</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/is/">http://epics.ecn.purdue.edu/is/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--1 day--tuesday impact--human-services">
+					<div class="team-name">
+						TORCH
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">TORCH</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Tuesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:20 AM</span>
+						<span class="detail-item detail--description" data-field="description">Indiana will be celebrating its bicentennial year in 2016.  They have requested torches for adults and children.  The adults' torch will have actual fire and will be constructed by the Aero Department.  We are attempting to build a torch for children that will be lit by LED technology.  This torch will travel to schools in the State of Indiana and will look like the torch on the state flag.</span>
+						<span class="detail-item detail--skillset" data-field="skillset">Circuits, Wireless Communication, LED Lights, Ink Screen Display, Web Development, APP development, CAD Modelling, Arduino</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/torch/">http://epics.ecn.purdue.edu/torch/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--tuesday impact--human-services">
+					<div class="team-name">
+						Advanced Design
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">APP</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Tuesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">An advanced design team developing apps for mobile devices, iPad, and Google Android that can also benefit the community (e.g., communication device using the iPad) and/or advanced databases.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/apps/">http://epics.ecn.purdue.edu/apps/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--thursday impact--human-services">
+					<div class="team-name">
+						Database and Innovative Software for the Community
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">DISC</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">DISC will be creating scalable data-centric applications meant to track and organize project partner's information. There is a focus on remotely accessible tools that are full function and easy to use. A lot of the currently projects use .net and databases, but there are also projects using Python, HTML, CSS, and other technologies.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/disc/">http://epics.ecn.purdue.edu/disc/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--3 day--thursday impact--human-services">
+					<div class="team-name">
+						Habitat for Humanity
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">HFH</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Works with both national and international levels of Habitat for Humanity: Lafayette, State of Indiana, and International Headquarters.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/hfh/">http://epics.ecn.purdue.edu/hfh/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--3 day--friday impact--human-services">
+					<div class="team-name">
+						Health for India's Children
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">HFIC</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Friday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Developing designs to meet the needs of poor children in Hyderabad, India.  This team is focusing initially on food and nutrition issues related to orphan children that are being served by the orphanage that is the partner for the team.  The initial project will explore ways to provide soy milk locally and afford-ably through the development of appropriate machinery and processing.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/hfic/">http://epics.ecn.purdue.edu/hfic/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--3 day--monday impact--human-services">
+					<div class="team-name">
+						Indiana School for the Blind and Visually Impaired
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">ISBVI</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Monday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Students in this project-based design course will solve a real-world problem by developing iOS APPs, mechanical tools, and associated interfaces for teaching mathematical concepts to blind and visually impaired students. Example projects include developing a high-contrast, iPad platform graphing calculator for visually impaired students and a tactile, mechanically driven display for communicating graphic data to blind students. Students with a background or interest in communications, education, project management, object-oriented programming, or electromechanical design are encouraged to participate.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/isbvi/">http://epics.ecn.purdue.edu/isbvi/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--4 day--monday impact--human-services">
+					<div class="team-name">
+						ABOD
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">ABOD</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Monday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">3:30 PM - 5:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">The ABOD project's mission is to help impoverished or diaster-stricken regions create stable communities that are empowered to enhance quality of life by improving basic living conditions.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/abod/">http://epics.ecn.purdue.edu/abod/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--1 day--tuesday impact--human-services">
+					<div class="team-name">
+						ECUADOR
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">ECUADOR</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Human Services</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Tuesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:20 AM</span>
+						<span class="detail-item detail--description" data-field="description">Students will be exposed to culture and engineering in Ecuador. Spring 2015 Ecuador team will restart a global design team (GDT) project that had been postponed while directions for the project was clarified. Opportunities exist to strengthen our global community by: development of alternate building materials, exploration of EPICS expansion, and development of cultural readiness.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/ecuador/">http://epics.ecn.purdue.edu/ecuador/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--thursday impact--education-outreach">
+					<div class="team-name">
+						Aero and Astro Engineering Education
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">AAEE</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Designs fun, interactive, space related educational projects to benefit Purdue Space Day and other Aero outreach activities. Example projects: Mars Rover, Catapult, air plane launcher, etc.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/aaee/">http://epics.ecn.purdue.edu/aaee/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--3 day--wednesday impact--education-outreach">
+					<div class="team-name">
+						Cellular Engineering Demonstrations
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">CED</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">1:30 PM - 3:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Our mission is to design and create interactive models of living cells to engage young children. Our desire is to teach individuals ages 10 and up about forces that allow our cells to hear, grow, and touch.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/ced/">http://epics.ecn.purdue.edu/ced/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--4 day--wednesday impact--education-outreach">
+					<div class="team-name">
+						Greater Lafayette Elementary Education
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">GLEE</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">3:30 PM - 5:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">The team works in conjunction with the HHES science club to build fun projects for the school's science museum. The team has direct contact with children, building projects the kids enjoy most. The science museum projects encompass all disciplines.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/glee/">http://epics.ecn.purdue.edu/glee/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--5 day--wednesday impact--education-outreach">
+					<div class="team-name">
+						Haiti Development
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">HDEV</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">4:30 PM - 6:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">The HDEV team is currently working on a portal that will connect the people of Purdue to the community via the web. It will serve as a means through which the community will better be able to connect with the resources of Purdue and all of the valuable clubs and service learning opportunities available.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/hdev/">http://epics.ecn.purdue.edu/hdev/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--monday impact--education-outreach">
+					<div class="team-name">
+						Information Management Systems for EPICS Teams
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">IMS</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Monday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">This team develops online, large scale software applications for EPICS students and faculty at Purdue and EPICS teams nationwide. The EPICS administration uses the tools to maintain student and advisor information, and EPICS students use the tools to interact more effectively with their teammates. General programming knowledge (in any programming language) is necessary and will be applied in your tenure on this team.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/ims/">http://epics.ecn.purdue.edu/ims/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--wednesday impact--education-outreach">
+					<div class="team-name">
+						Learning Science and Math Trough Engineering
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">LSME</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Education and Outreach</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">This team works with K-12 grade students to design innovative ways to help strengthen their math skills and develop an appreciation for engineering.  </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/lsme/">http://epics.ecn.purdue.edu/lsme/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--tuesday impact--access-abilities">
+					<div class="team-name">
+						Camp Riley
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">CR</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Access and Abilities</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Tuesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">Camp Riley is a summer camp for children with disabilities held at Bradford Woods, Indiana University's 2,500-acre universally accessible outdoor recreational facility in Martinsville, Indiana. Although the camp is very accessible, there are still barriers for the children to be able to participate fully in all of the activities. This EPICS course will focus on designing ways to overcome some of these barriers. </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/cr/">http://epics.ecn.purdue.edu/cr/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--1 day--friday impact--access-abilities">
+					<div class="team-name">
+						Global Design of Assistive Technology
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">GDAT</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Access and Abilities</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Friday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:20 AM</span>
+						<span class="detail-item detail--description" data-field="description">The GDAT team designs and develops devices that assist differently-abled individuals, their caregivers, and healthcare providers with rehabilitation exercises and daily-life activities in Ireland. </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/gdat/">http://epics.ecn.purdue.edu/gdat/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--4 day--thursday impact--access-ablilities">
+					<div class="team-name">
+						Disability Resource Center
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">DRC</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Access and Abilities</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Thursday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">3:30 PM - 5:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">The DRC team works with the Disability Resource Center. The team's goal is to create innovative solutions for students with disabilities so these students may perform the same activities and take advantage of the same opportunities available to their peers. These solutions include designing software, furniture, and other adaptive products. </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/drc/">http://epics.ecn.purdue.edu/drc/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--1 day--wednesday impact--environment">
+					<div class="team-name">
+						Global Alternative Power Solutions
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">GAPS</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Environment</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Wednesday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">8:30 AM - 10:20 AM</span>
+						<span class="detail-item detail--description" data-field="description">This team will be developing alternative energy solutions to provide power to remote villages in rural Colombia through collaborations with Colombian universities, communities and industries. </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/gaps/">http://epics.ecn.purdue.edu/gaps/</a></span>
+					</div>
+				</div>
+				
+				<div class="team school--engineering time--2 day--friday impact--environment">
+					<div class="team-name">
+						Neighborhood Sustainability
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<div class="team-detail">
+						<span class="detail-item detail-item--half detail--acronym" data-field="acronym">NS</span>
+						<span class="detail-item detail-item--half detail--impact" data-field="impact">Environment</span>
+						<span class="detail-item detail-item--half detail--day" data-field="day">Friday</span>
+						<span class="detail-item detail-item--half detail--time" data-field="time">10:30 AM - 12:20 PM</span>
+						<span class="detail-item detail--description" data-field="description">This team will partner with City of Lafayette to develop strategies to enhance neighborhood sustainability, especially for homes, neighborhoods, and public facilities.  This may include strategies for new construction as well as existing facilities, including historic buildings, and include those practices that may be more applicable at the neighborhood scale.  These strategies will attempt to maintain a balance of cost, do-it-yourself feasibility, and effectiveness and include a broad range of sustainability practices, encompassing energy efficiency, storm water management, construction material selection, environmental concerns and certification processes such as LEED. </span>
+						<span class="detail-item detail--skillset" data-field="skillset">info needed</span>
+						<span class="detail-item detail--website" data-field="website"><a href="http://epics.ecn.purdue.edu/ns/">http://epics.ecn.purdue.edu/ns/</a></span>
+					</div>
+				</div>
+			</div>
+
+		<script>
+			//$('#sidebar').slideUp();
+			$('#splash-start').click(function() {
+				$('#splash').fadeOut();
+				$('.container').slideDown();
+
+				$('#team-objects').mixItUp({
+					selectors: {
+						//filter: '.expansion-item-object',
+						target: '.team'
+					},
+					controls: {
+						//toggleFilterButtons: true,
+					}
+				})
+			});
+			$('.team-name').click(function() {
+				$(this).toggleClass('team-name--color');
+				$(this).parent().toggleClass('team--expand');
+				$(this).next().slideToggle();
+				$(this).children('i').toggleClass('fa-chevron-down');
+				$(this).children('i').toggleClass('fa-chevron-up');
+			})
+			$('#search-icon').click(function() {
+				$('#search').fadeToggle();
+			})
+			$('.sidebar-item').click(function() {
+				var field = $(this).data('field');
+				$('.expansion-item').fadeOut();
+				$('#expansion').fadeIn();
+				$('.expansion-item--' + field).fadeIn();
+			});
+			$('.expansion-item-object').click(function() {
+				var field = $(this).parent().data('field');
+				var value = $(this).data(field);
+				var filter = $(this).data('filter');
+				$(this).parent().children('.active').removeClass('active');
+				$(this).addClass('active');
+				$('.sidebar-item--' + field).children('.sidebar-item-object').text(value);
+				$('.sidebar-item--' + field).data('filter', filter);
+				//alert(filter);
+				//$(this).parent().children('.active').removeClass('active');
+				$('#expansion').fadeOut();
+				$('.expansion-item').fadeOut();
+				if ($('.sidebar-item--school').data('filter') == 'all') {
+					var school = '';
+				} else {
+					var school = $('.sidebar-item--school').data('filter');
+				};
+				if ($('.sidebar-item--major').data('filter') == 'all') {
+					var major = '';
+				} else {
+					var major = $('.sidebar-item--major').data('filter');
+				};
+				if ($('.sidebar-item--day').data('filter') == 'all') {
+					var day = '';
+				} else {
+					var day = $('.sidebar-item--day').data('filter');
+				};
+				if ($('.sidebar-item--time').data('filter') == 'all') {
+					var time = '';
+				} else {
+					var time = $('.sidebar-item--time').data('filter');
+				};
+				if ($('.sidebar-item--impact').data('filter') == 'all') {
+					var impact = '';
+				} else {
+					var impact = $('.sidebar-item--impact').data('filter');
+				};
+				var query = school + major + impact + day + time;
+				//query = query.replace(/[all]/g, '');
+				if (query == '') {
+					query = 'all';
+				};
+				//alert(query);
+				$('#team-objects').mixItUp('filter', query);
+			});
+		</script>
+
+	</body>
+</html>
