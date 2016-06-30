@@ -4,18 +4,41 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="js/admin.js"></script>
   </head>
-  <body>
-    <div id="splashscreen" style="background-image: url('http://2.bp.blogspot.com/-BJdvrIgTQKQ/UobS7PHZv3I/AAAAAAAACDA/Gb_oUjnXRkM/s1600/P1030580.JPG'); background-position: center;">
-      <center>
-        <br><br><br><br><br><br>
-        <div style="padding: 20px; border: 3px solid white; width: 250px; border ;border-radius: 25px;">
-        <h2>Welcome !</h2>
 
-        <input placeholder="Username" id="initialUser" type="text" name="Username" ><br>
-        <input placeholder="Password" id="initialPass" type="password" name="Password" ><br>
-        
-        <button><a href="#" class="enter_link">Login</a></button>
-      </center>
+  <!---intro page starts -->
+<div id="splashscreen" style="background-image: url('http://2.bp.blogspot.com/-BJdvrIgTQKQ/UobS7PHZv3I/AAAAAAAACDA/Gb_oUjnXRkM/s1600/P1030580.JPG'); background-position: center;">
+  <center>
+  
+<body>
+
+<!---header--
+<div id="splash" class="">  
+        <div id="splash-header">
+        <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
+        <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
+      </div>
+<!---header ends-->
+
+
+    <br><br><br><br><br>
+    <div id = "login">
+<form id="fm1" >
+
+    <div style="padding: 30px; border: 15px solid #A37B2C; width: 300px; border ;border-radius: 30px;">
+
+    <fieldset>
+    <h2>Welcome !</h2>
+
+    <label for="username"><span>L</span>ogin:</label>
+    <input placeholder="Username" id="initialUser" type="text" name="Username" value="" size="25" maxlength="25" autocomplete="false" / ><br>
+
+    <label for="password"><span>P</span>assword:</label>
+    <input placeholder="Password" id="initialPass" type="password" name="Password" value="" size="23" maxlength="23" autocomplete="off"/><br>
+    
+    <button><a href="#" class="enter_link">Login</a></button>
+  </center>
+
+
       <script>
       $('#initialPass').on("keypress", function(e) {
         if (e.keyCode == 13) {
@@ -141,6 +164,17 @@ fieldset p, fieldset div {
 
 <div>
 	<div style="background-color:#808080; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;"> <!--Form for adding new team -->
+
+<!---header-->
+    <div id="splash" class="">  <!--Landing page with purdue background, fades out  -->
+        <div id="splash-header">
+        <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
+        <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
+      </div>
+      </div>
+<!---header ends-->
+
+
 
 <br>
 Search:
