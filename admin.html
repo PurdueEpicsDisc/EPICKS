@@ -2,23 +2,25 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
     <script src="js/admin.js"></script>
   </head>
 
-  <!---intro page starts -->
+<!--log in session starts--
+
 <div id="splashscreen" style="background-image: url('http://2.bp.blogspot.com/-BJdvrIgTQKQ/UobS7PHZv3I/AAAAAAAACDA/Gb_oUjnXRkM/s1600/P1030580.JPG'); background-position: center;">
   <center>
   
 <body>
 
-<!---header--
-<div id="splash" class="">  
+<!---log in page header--
         <div id="splash-header">
         <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
         <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
-      </div>
+
 <!---header ends-->
 
+<!--login window--
 
     <br><br><br><br><br>
     <div id = "login">
@@ -37,6 +39,7 @@
     
     <button><a href="#" class="enter_link">Login</a></button>
   </center>
+
 
 
       <script>
@@ -62,134 +65,78 @@ function login() {
        });
 }
       </script>
+
+
         </div>
     </div>
+<!--log in session ends-->
 
-    <div>
-      <button onclick="logout()" style="float: right;">Log Out</button>
-    </div>
-
-    <!-- add to the css here -->
-    <style> 
-    body {
-        background-color:white;
-    }
-
-<!-- add to the css here -->
-<style> 
-
-
-html, body, div, span, h1, h2, fieldset, form, label, legend, {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 80%;
-  font-family: inherit;
-  vertical-align: baseline;
-  background: transparent;
-}
-
-body {
-    background-color:white;
-}
-
-h2 {
-  font-size:300%;
-  font-weight:bold;
-  color:#FFFFFF;
-  text-align:center;
-  margin:0 0 1.3em;
-}
-
-#login form {
-  padding:0 50px 25px 50px;
-  min-height: 200px;
-  height: auto;
-}
-
-#login p {
-  text-align:left;
-  margin:10px 0;
-}
-
-#login fieldset {
-  margin:0 auto;
-  padding:114px 0 10px 0;
-  text-align:left;
-}
-
-fieldset label {
-  display:block;
-  font-weight:bold;
-  font-size:125%;
-}
-fieldset input {
-  font-size:145%;
-  width:100%;
-  font-weight:bold;
-  border:1px solid #EEEEEE;
-  border-left:1px solid #999999;
-  border-top:1px solid #999999;
-}
-fieldset input:focus {
-  border:1px solid ;
-  background:none #FFFFFF;
-}
-
-fieldset p, fieldset div {
-  margin:10px 20px !important;
-}
-
-#splashscreen {
-    position: fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:100%;
-    background-color:white;
-    overflow: hidden;
-
-    .highlight
-    {
-      background-color: yellow;
-    }
-}
-</style>
 
 <!--ToDo: put all the html stuff here -->
 
+<!--main funtional page starts-->
 <div>
-	<div style="background-color:#808080; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;"> <!--Form for adding new team -->
 
-<!---header-->
-    <div id="splash" class="">  <!--Landing page with purdue background, fades out  -->
-        <div id="splash-header">
+
+<!--funtional page header-->
+
+      <div id="splash-header">
         <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
         <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
       </div>
-      </div>
-<!---header ends-->
+
+<!--header ends-->
+
+<!--sidebar starts-->
+
+<div id="sidebar">
+        <img class="sidebar-image" src="images/EPICS.png" />
+        <span class="sidebar-title lowercase">A d m i n </span>
+</div>
+<!--sidebar ends-->
+
+<!--logout function-->
+    <div id="logout">
+      <button onclick="logout()" style="float: right;">Log Out</button>
+    </div>
+
+<!--logout function ends-->
 
 
+<!--main area -->
+<div id="mainArea">
 
-<br>
-Search:
-&nbsp;&nbsp;&nbsp;
-<input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">&nbsp;
-  <button onclick="word2find()" >Search</button>
-<br><br>
+<!--search division-->
+<div id="search-box"> 
+
+    Search:
+    <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">;
+      <button onclick="word2find()" >Search</button>
+      <button onclick="">Add Team</button>
+</div>
+
+<!--search result-->
+
+  <div id="searchResult">
+
+  <label>Team Search Results</label><br>
+
+      <input type="text" placeholder="" id="result" />
+      <input type="submit" value="Edit" onclick="" />
+      <input type="submit" value="Delete" onclick="" />
+  </div>
+
+<!--search result ends-->
+
+<!--search division ends-->
+
+<!--new team adding session-->
+<div id="addTeam">
+<label>Add New Team Information below:</label><br>
 
 
-<div>
-Team Name:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;
+<label>Team Name</label>:
+
 <input type="text" name="TeamName" id="newName" placeholder="Enter team name"><br>
 
 Team Acronym:
@@ -252,14 +199,204 @@ Area of Impact:
 </select><br>
 
 Description:<br> 
-<TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></textarea><br>
-<input type="submit" value="Submit" onclick="submit(this)"><br>
+<TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
+<input type="submit" value="Submit" onclick="submit(this)">
 
 </div>
 
-</div> <!-- all the teams are going here, change from all to just search results here. -->
-    <div id="team-objects"></div>
+<!-- all the teams are going here, change from all to just search results here. -->
+
+<!--list of search results team info will be displayed below-->
+    <div id="team-objects">
+    <form>
+      <label>Team Name: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+      <label>Acronym: </label>
+      <input type="text" placeholder="" id="acr" /><br>
+
+      <label>Major: </label>
+      <input type="text" placeholder="" id="major" /><br>
+
+      <label>Area of Impact: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+      <label>Date: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+      <label>Time: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+      <label>Description: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+      <label>Website: </label>
+      <input type="text" placeholder="" id="" /><br>
+
+
+    </form> 
+
+    </div>
+<!--end of the list-->
 </div>
 
+<!--end of mainArea-->
+</div>
+
+<!--end of funtional page-->
   </body>
 </html>
+
+
+<!-- add to the css here -->
+<style> 
+
+
+html, body, div, span, h1, h2, fieldset, form, label, legend, {
+  font: 16px "Open Sans";
+  color: #646464;
+  background: #fafafa;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 80%;
+  font-family: inherit;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+h2 {
+  font-size:300%;
+  font-weight:bold;
+  color:#FFFFFF;
+  text-align:center;
+  margin:0 0 1.3em;
+}
+
+#login form {
+  padding:0 50px 25px 50px;
+  min-height: 200px;
+  height: auto;
+}
+
+#login p {
+  text-align:left;
+  margin:10px 0;
+}
+
+#login fieldset {
+  margin:0 auto;
+  padding:114px 0 10px 0;
+  text-align:left;
+}
+
+#sidebar {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-right:20rem;
+  box-sizing: border-box;
+  width: 20rem;
+  height: 100%;
+  background: #231f20;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.sidebar-title {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  font: 1.5rem/2rem "Lora";
+  color: #a3792c;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+#splash-header{
+  position:fixed;
+  margin-left:20rem;
+}
+
+
+#mainArea{
+  position:fixed;
+  top:200px;
+  margin-left:20rem;
+  width:70%;
+  padding-left:20px;
+  padding-top:20px;
+  margin-bottom:50rem;
+}
+fieldset label {
+  display:block;
+  font-weight:bold;
+  font-size:125%;
+}
+fieldset input {
+  font-size:145%;
+  width:100%;
+  font-weight:bold;
+  border:1px solid #EEEEEE;
+  border-left:1px solid #999999;
+  border-top:1px solid #999999;
+}
+fieldset input:focus {
+  border:1px solid ;
+  background:none #FFFFFF;
+}
+
+fieldset p, fieldset div {
+  margin:10px 20px !important;
+}
+
+
+#search-box{
+  background-color:#808080; 
+  outline-style: solid;
+  padding : 10px; 
+
+}
+
+#searchResult{
+  margin-top:20px;
+  outline-style:solid;
+  padding:10px;
+}
+
+#addTeam{
+  margin-top:20px;
+  outline-style:solid;
+  padding:10px;
+
+}
+
+#team-objects{
+  margin-top:20px;
+  padding:10px;
+  margin-bottom:20px;
+  outline-style:solid;
+}
+
+#splashscreen {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background-color:white;
+    overflow: hidden;
+
+    .highlight
+    {
+      background-color: yellow;
+    }
+}
+</style>
