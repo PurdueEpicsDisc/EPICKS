@@ -1,9 +1,12 @@
 <html>
   <head>
+  <!--scirpt-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
     <script src="js/admin.js"></script>
+
+  <!--script list ends-->
+    <link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
   </head>
 
 <!--log in session starts--
@@ -82,7 +85,7 @@ function login() {
 
       <div id="splash-header">
         <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
-        <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
+        <a class="logotype" style="color:#a3792c;"> EPICKS ADMIN </a>
       </div>
 
 <!--header ends-->
@@ -95,6 +98,11 @@ function login() {
 </div>
 <!--sidebar ends-->
 
+
+<!--main area -->
+<div id="mainArea">
+
+
 <!--logout function-->
     <div id="logout">
       <button onclick="logout()" style="float: right;">Log Out</button>
@@ -103,27 +111,24 @@ function login() {
 <!--logout function ends-->
 
 
-<!--main area -->
-<div id="mainArea">
-
 <!--search division-->
 <div id="search-box"> 
 
     Search:
-    <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">;
-      <button onclick="word2find()" >Search</button>
-      <button onclick="">Add Team</button>
+    <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
+      <button onclick="ShowResult()" >Search</button>
+      <button onclick="ShowAddNewTeam()">Add Team</button>
 </div>
 
 <!--search result-->
 
-  <div id="searchResult">
+  <div id="searchResult" style="display:none;">
 
   <label>Team Search Results</label><br>
 
-      <input type="text" placeholder="" id="result" />
-      <input type="submit" value="Edit" onclick="" />
-      <input type="submit" value="Delete" onclick="" />
+      <input type="text" placeholder="ex. EPICKS" id="result" />
+      <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
+      <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
   </div>
 
 <!--search result ends-->
@@ -131,9 +136,8 @@ function login() {
 <!--search division ends-->
 
 <!--new team adding session-->
-<div id="addTeam">
+<div id="addTeam" style="display:none;">
 <label>Add New Team Information below:</label><br>
-
 
 <label>Team Name</label>:
 
@@ -200,43 +204,53 @@ Area of Impact:
 
 Description:<br> 
 <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
-<input type="submit" value="Submit" onclick="submit(this)">
+
+<!--submit new team -->
+<input type="submit" value="Submit" onclick="submitNew()">
+<!--done with submit button-->
 
 </div>
 
 <!-- all the teams are going here, change from all to just search results here. -->
 
 <!--list of search results team info will be displayed below-->
-    <div id="team-objects">
+    <div id="team-objects" style="display:none;">
+    
+    <!--form to collect changes-->
     <form>
       <label>Team Name: </label>
-      <input type="text" placeholder="" id="" /><br>
+      <input type="text" placeholder="" id="team_name" /><br>
 
       <label>Acronym: </label>
-      <input type="text" placeholder="" id="acr" /><br>
+      <input type="text" placeholder="" id="abbrev" /><br>
 
       <label>Major: </label>
       <input type="text" placeholder="" id="major" /><br>
 
       <label>Area of Impact: </label>
-      <input type="text" placeholder="" id="" /><br>
+      <input type="text" placeholder="" id="aoi" /><br>
 
-      <label>Date: </label>
-      <input type="text" placeholder="" id="" /><br>
+      <label>Day: </label>
+      <input type="text" placeholder="" id="day" /><br>
 
       <label>Time: </label>
-      <input type="text" placeholder="" id="" /><br>
+      <input type="text" placeholder="" id="time" /><br>
 
       <label>Description: </label>
-      <input type="text" placeholder="" id="" /><br>
+      <input type="text" placeholder="" id="desc" /><br>
 
       <label>Website: </label>
-      <input type="text" placeholder="" id="" /><br>
-
+      <input type="text" placeholder="" id="web" /><br>
 
     </form> 
+    <!--done collecting changes-->
+
+    <!--submit changes button -->
+    <input type="submit" value="Submit" onclick="submitChanges()">
+    <!--submit changes ends-->
 
     </div>
+
 <!--end of the list-->
 </div>
 
@@ -302,7 +316,7 @@ h2 {
   bottom: 0;
   margin-right:20rem;
   box-sizing: border-box;
-  width: 20rem;
+  width: 15rem;
   height: 100%;
   background: #231f20;
   padding: 1rem 0;
@@ -320,19 +334,19 @@ h2 {
 }
 
 #splash-header{
-  position:fixed;
-  margin-left:20rem;
+  position:relative;
+  margin-left:15rem;
 }
 
 
 #mainArea{
-  position:fixed;
-  top:200px;
-  margin-left:20rem;
-  width:70%;
-  padding-left:20px;
-  padding-top:20px;
+  position:relative;
+  margin-left:15rem;
+  margin-right:15rem;
   margin-bottom:50rem;
+  width:100%;
+  padding-left:20px;
+  padding-top:10px;
 }
 fieldset label {
   display:block;
@@ -356,29 +370,34 @@ fieldset p, fieldset div {
   margin:10px 20px !important;
 }
 
+#logout{
+  position:relative;
+  float:left;
+}
 
 #search-box{
   background-color:#808080; 
   outline-style: solid;
   padding : 10px; 
+  margin-top:30px;
 
 }
 
 #searchResult{
-  margin-top:20px;
+  margin-top:30px;
   outline-style:solid;
   padding:10px;
 }
 
 #addTeam{
-  margin-top:20px;
+  margin-top:30px;
   outline-style:solid;
   padding:10px;
 
 }
 
 #team-objects{
-  margin-top:20px;
+  margin-top:30px;
   padding:10px;
   margin-bottom:20px;
   outline-style:solid;
@@ -400,3 +419,43 @@ fieldset p, fieldset div {
     }
 }
 </style>
+
+
+
+<script>
+//these functions only work for button transitions. no info exchanged
+//currently very wordy. please moditfy if you can
+
+function ShowAddNewTeam(){
+  //input form appears and search box hidden after "add Team" button clicked
+  document.getElementById("addTeam").style.display = "block";
+  document.getElementById("search-box").style.display = "none";
+}
+
+function submitNew(){
+  //back to search/add step and input form hidden after "submit" button clicked
+  document.getElementById("search-box").style.display = "block";
+  document.getElementById("addTeam").style.display = "none";
+}
+
+function ShowResult(){
+  //search results appear and search box hidden after "search" button clicked
+  document.getElementById("searchResult").style.display = "block";
+  document.getElementById("search-box").style.display = "none";
+}
+
+function edit1(){
+  //existing team edit form appears and search results hidden after "edit" button clicked
+  document.getElementById("team-objects").style.display = "block";
+  document.getElementById("searchResult").style.display="none";
+}
+
+function submitChanges(){
+  //back to search/add step and edit form hidden after "submit" button clicked
+  document.getElementById("search-box").style.display = "block";
+  document.getElementById("team-objects").style.display = "none";
+}
+
+
+</script>
+
