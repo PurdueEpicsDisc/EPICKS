@@ -132,18 +132,7 @@
       			});
 				function displayTeamInfo(abbrev, desc, aoi, string, day, name, time, website, time_num) { //The in line 
 					$("#team-objects").append(
-						$('<div class="team school--engineering school--science time--'+time_num+' day--'+day+' impact--'+string+'">
-								<div class="team-name" data-field="name">'+name+'
-									<i class="fa fa-chevron-down"></i>
-								</div>
-								<div class="team-detail">
-									<span class="detail-item detail-item--half detail--acronym" data-field="acronym">'+abbrev+'</span>
-									<span class="detail-item detail-item--half detail--impact" data-field="impact">'+aoi+'</span><span class="detail-item detail-item--half detail--day" data-field="day">'+day+'</span>
-									<span class="detail-item detail-item--half detail--time" data-field="time">'+time+'</span>
-									<span class="detail-item detail--description" data-field="description">'+desc+'</span>
-									<span class="detail-item detail--website" data-field="website"><a href="'+website+'">'+website+'</a></span>
-								</div>
-							</div>')
+						$('<div class="team school--engineering school--science time--'+time_num+' day--'+day+' impact--'+string+'"><div class="team-name" data-field="name">'+name+'<i class="fa fa-chevron-down"></i></div><div class="team-detail"><span class="detail-item detail-item--half detail--acronym" data-field="acronym">'+abbrev+'</span><span class="detail-item detail-item--half detail--impact" data-field="impact">'+aoi+'</span><span class="detail-item detail-item--half detail--day" data-field="day">'+day+'</span><span class="detail-item detail-item--half detail--time" data-field="time">'+time+'</span><span class="detail-item detail--description" data-field="description">'+desc+'</span><span class="detail-item detail--website" data-field="website"><a href="'+website+'">'+website+'</a></span></div></div>')
 					);
 				};
 			});

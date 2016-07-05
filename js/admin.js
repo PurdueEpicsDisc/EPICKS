@@ -4,26 +4,6 @@ if (authData) {
   $('#splashscreen').fadeOut(500);
 }
 
-/* $('#initialPass').on("keypress", function(e) {if (e.keyCode == 13) login() }, function(error, authData) {  //all three braces are part of the on keypress, same below
-      if (error) {
-      } else {
-        $('#splashscreen').fadeOut(500); //div splashcreen on line 6
-      }
-  }, {remember: "sessionOnly"});
-
-$('.enter_link').click(login(), function(error, authData) {
-    if (error) {
-    } else {
-      $('#splashscreen').fadeOut(500);
-    }
-  }, {remember: "sessionOnly"});
-
-function login() { 
-  myDataRef.authWithPassword({
-    "email": document.getElementById("initialUser").value,
-    "password": document.getElementById("initialPass").value 
-  }) */
-
 function submit(thing) { //add new group function
 
 
@@ -104,65 +84,69 @@ function submit(thing) { //add new group function
 
 function logout() {
 myDataRef.unauth();
+$('#admin').addClass("hidden");
 document.location.reload(true);
 }
 
 function goodbye(abbrev) { //other function names might conflict with standard names
 //alert(abbrev);
 
-var r = confirm("Are you sure?");
-if (r == true) {
-  x = "Team Deleted";
-} else {
-  return;
-}
+  var r = confirm("Are you sure?");
+  if (r == true) {
+    x = "Team Deleted";
+  } else {
+    return;
+  }
 
-var delChild = myDataRef.child(abbrev);
-delChild.remove();
-document.location.reload(true);
+  var delChild = myDataRef.child(abbrev);
+  delChild.remove();
+  document.location.reload(true);
 }
 
 function edit(abbrev) {
-//alert(abbrev);
-var ed = myDataRef.child(abbrev);
+  //alert(abbrev);
+  var ed = myDataRef.child(abbrev);
 
-var name, acc, web, day, time, aoi, desc;
+  var name, acc, web, day, time, aoi, desc;
 
-ed.once("value", function(snapshot) {
-  name = snapshot.val().team_name;
-  acc = snapshot.val().team_abbrev;
-  web = snapshot.val().website; 
-  day = snapshot.val().day;
-  aoi = snapshot.val().aoi;
-  desc = snapshot.val().description;
-  time = snapshot.val().time;
-});
-
-$("#" + abbrev).remove();
-//The below should be replaced with the new edit form
-$("#" + abbrev + "outer").append($('<div>Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamName" id="newName'+acc+'" value="'+name+'"><br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamAcronym" id="newAc'+acc+'" value="'+acc+'"><br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Website" value="'+web+'" id="newWebsite'+acc+'"><br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="newDay'+acc+'"><option>'+day+'</option><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option></select><br> Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select value="'+time+'" id = "newTime'+acc+'">  <option value="1">8:30 AM - 10:20 AM</option><option value="2">10:30 AM - 12:20 PM</option><option value="3">1:30 PM - 3:20 PM</option><option value="4">3:30 PM - 5:20 PM</option><option value="5">Other</option></select><br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id = "newAOI'+acc+'"><option>'+aoi+'</option><option value="Access & Abilities">Access & Abilities</option><option value="Education & Outreach">Education & Outreach</option><option value="Environment">Environment</option><option value="Human Services">Human Services</option></select><br>Description:<br> <TEXTAREA NAME="Description" id="newDesc'+acc+'" ROWS=5 COLS=50 >'+desc+'</textarea><br><input type="submit" onclick="submit(this)" value="Submit">'));
-}
-
-myDataRef.on('child_added', function(snapshot) {
-  var team = snapshot.val();
-    displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time, team.website, team.time_num);
+  ed.once("value", function(snapshot) {
+    name = snapshot.val().team_name;
+    acc = snapshot.val().team_abbrev;
+    web = snapshot.val().website; 
+    day = snapshot.val().day;
+    aoi = snapshot.val().aoi;
+    desc = snapshot.val().description;
+    time = snapshot.val().time;
   });
 
-  function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) {
-    /*$("#team-objects").append( 
-      '<div id="'+abbrev+'outer" style="background-color:#f0f0f0; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;">
-          <div id="'+abbrev+'">  
-            Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ name + "<br>
-            Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  abbrev + "<br>
-            Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + website +"<br>
-            Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + day +"<br>
-            Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + time +"<br>Area of 
-            Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + aoi + '<br>
-            Description:<br>' + desc + '<br>
-            <input type="submit" value="Edit" onclick="edit(\''+abbrev+'\')">
-            <input type="submit" value="Delete" onclick="goodbye(\''+abbrev+'\')">
-          </div>
-        </div>')
-  ); */
+  $("#" + abbrev).remove();
+  //The below should be replaced with the new edit form
+  $("#" + abbrev + "outer").append($('<div>Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamName" id="newName'+acc+'" value="'+name+'"><br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamAcronym" id="newAc'+acc+'" value="'+acc+'"><br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Website" value="'+web+'" id="newWebsite'+acc+'"><br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="newDay'+acc+'"><option>'+day+'</option><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option></select><br> Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select value="'+time+'" id = "newTime'+acc+'">  <option value="1">8:30 AM - 10:20 AM</option><option value="2">10:30 AM - 12:20 PM</option><option value="3">1:30 PM - 3:20 PM</option><option value="4">3:30 PM - 5:20 PM</option><option value="5">Other</option></select><br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id = "newAOI'+acc+'"><option>'+aoi+'</option><option value="Access & Abilities">Access & Abilities</option><option value="Education & Outreach">Education & Outreach</option><option value="Environment">Environment</option><option value="Human Services">Human Services</option></select><br>Description:<br> <TEXTAREA NAME="Description" id="newDesc'+acc+'" ROWS=5 COLS=50 >'+desc+'</textarea><br><input type="submit" onclick="submit(this)" value="Submit">'));
+}
+
+try {myDataRef.on('child_added', function(snapshot) {
+  var team = snapshot.val();
+    displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time, team.website, team.time_num);
+}); }
+catch(err) {
+  alert("failed to load teams");
+}
+
+function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) {
+  $("#searchResult").append('<div id="'+abbrev+'outer" class="hidden" style="background-color:#f0f0f0; outline-style: solid; padding-top: 5px; padding-right: 3px; padding-bottom: 5px; padding-left: 8px;"><div id="'+abbrev+'">  Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ name + "<br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  abbrev + "<br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + website +"<br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + day +"<br>Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + time +"<br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + aoi + '<br>Description:<br>' + desc + '<br><input type="submit" value="Edit" onclick="edit(\''+abbrev+'\')"><input type="submit" value="Delete" onclick="goodbye(\''+abbrev+'\')"></div></div>'); 
   return;
-};
+}; 
+
+//will add all teams on page load since calls can't be made after load
+
+ function search() {
+  try {
+    $("#searchResult:contains('"+document.getElementById('wordSearch').value+"')").removeClass('hidden');
+  } catch(err) {
+    alert('invalid');
+  }
+}
+
+function revealAdd() {
+  $('#addTeam').removeClass('hidden');
+}
