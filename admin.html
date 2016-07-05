@@ -17,7 +17,7 @@
 <body>
 
 <!---log in page header--
-        <div id="splash-header">
+        <div id="login-splash-header">
         <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
         <a class="logotype-epics" href="https://engineering.purdue.edu/EPICS"><img class="logotype" src="images/EPICS.png" /></a>
 
@@ -120,13 +120,14 @@ function login() {
       <button onclick="ShowAddNewTeam()">Add Team</button>
 </div>
 
-<!--search result-->
+<!--search result (style="display:none;")-->
 
-  <div id="searchResult" style="display:none;">
+  <div id="searchResult" >
 
   <label>Team Search Results</label><br>
 
-      <input type="text" placeholder="ex. EPICKS" id="result" />
+      <label id="result">ex.EPICKS </label>
+
       <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
       <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
   </div>
@@ -135,35 +136,26 @@ function login() {
 
 <!--search division ends-->
 
-<!--new team adding session-->
-<div id="addTeam" style="display:none;">
+<!--new team adding session (style="display:none;)"-->
+
+<div id="addTeam" >
 <label>Add New Team Information below:</label><br>
 
+<form>
 <label>Team Name</label>:
 
-<input type="text" name="TeamName" id="newName" placeholder="Enter team name"><br>
+<input type="text" name="newName" id="newName" placeholder="Enter team name"><br>
 
-Team Acronym:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<input type="text" name="TeamAcronym" id="newAc" placeholder="Enter team acronym" ><br>
+<label>Team Acronym:</label>
+
+<input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" ><br>
 
 Website:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<input type="text" name="Website" id="newWebsite" placeholder="Enter a website"><br>
+
+<input type="text" name="newWeb" id="newWebsite" placeholder="Enter a website"><br>
 
 Day:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
+
 <select id="newDay">
   <option>Choose a Day</option>
   <option value="Monday">Monday</option>
@@ -174,13 +166,7 @@ Day:
 </select><br> 
 
 Time:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;
+
 <select id = "newTime">
   <option>Choose a Time</option>
   <option value="1">8:30 AM - 10:20 AM</option>
@@ -191,9 +177,7 @@ Time:
 </select><br>
 
 Area of Impact:
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;
+
 <select id = "newAOI">
   <option>Choose an Area</option>
   <option value="Access & Abilities">Access & Abilities</option>
@@ -204,17 +188,19 @@ Area of Impact:
 
 Description:<br> 
 <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
+</form>
 
-<!--submit new team -->
-<input type="submit" value="Submit" onclick="submitNew()">
+
+<!--submit new team --(onclick="submitNew()")>
+<input type="submit" value="Submit" >
 <!--done with submit button-->
 
 </div>
 
 <!-- all the teams are going here, change from all to just search results here. -->
 
-<!--list of search results team info will be displayed below-->
-    <div id="team-objects" style="display:none;">
+<!--list of search results team info will be displayed below (style="display:none;")-->
+    <div id="team-objects" >
     
     <!--form to collect changes-->
     <form>
@@ -245,8 +231,8 @@ Description:<br>
     </form> 
     <!--done collecting changes-->
 
-    <!--submit changes button -->
-    <input type="submit" value="Submit" onclick="submitChanges()">
+    <!--submit changes button (value="Submit" onclick="submitChanges())"-->
+    <input type="submit" >
     <!--submit changes ends-->
 
     </div>
@@ -267,7 +253,7 @@ Description:<br>
 
 
 html, body, div, span, h1, h2, fieldset, form, label, legend, {
-  font: 16px "Open Sans";
+  font: 30px "Open Sans";
   color: #646464;
   background: #fafafa;
   width: 100%;
@@ -283,8 +269,25 @@ html, body, div, span, h1, h2, fieldset, form, label, legend, {
   background: transparent;
 }
 
+#login-splash-header {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+  overflow: hidden;
+  margin-left:0;
+  border-top: 20px solid #a3792c;
+  background: #231f20;
+  border-bottom: 3px solid #e4ae23;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+
 h2 {
-  font-size:300%;
+  font-size:30%;
   font-weight:bold;
   color:#FFFFFF;
   text-align:center;
@@ -389,6 +392,10 @@ fieldset p, fieldset div {
   padding:10px;
 }
 
+#editbutton{
+  margin-left:30px;
+}
+
 #addTeam{
   margin-top:30px;
   outline-style:solid;
@@ -396,11 +403,16 @@ fieldset p, fieldset div {
 
 }
 
+#addTeam > form >label{
+  width:px;
+}
+
 #team-objects{
   margin-top:30px;
   padding:10px;
   margin-bottom:20px;
   outline-style:solid;
+
 }
 
 #splashscreen {
