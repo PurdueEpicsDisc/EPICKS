@@ -1,7 +1,8 @@
 var myDataRef = new Firebase('https://e-picks-purdue.firebaseio.com/'); // Firebase object used for everything else
 var authData = myDataRef.getAuth();
 if (authData) {
-  $('#splashscreen').fadeOut(500);
+  try { $('#admin').removeClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
+  try { $('#splashscreen').addClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
 }
 
 function submit(thing) { //add new group function
@@ -141,10 +142,18 @@ function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) 
 
  function search() {
   try {
-    $("#searchResult:contains('"+document.getElementById('wordSearch').value+"')").removeClass('hidden');
+    var searchString = "/" +$('#wordSearch').val()+ "/i";
+    $('#searchResult').each(function(index, element) {
+      if (searchString.test($(element).outerHTML)) {
+        $(element).removeClass('hidden');
+      }
+    })
   } catch(err) {
     alert('invalid');
   }
+}
+function matches(element) {
+
 }
 
 function revealAdd() {

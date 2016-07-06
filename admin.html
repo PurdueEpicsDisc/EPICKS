@@ -62,6 +62,7 @@ function login(e) {
            "password": document.getElementById("initialPass").value 
          }, authHandler, {remember: "sessionOnly"});
      try { $('#admin').removeClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
+     $('#splashscreen').fadeOut();
      return false;
 }
 </script>
