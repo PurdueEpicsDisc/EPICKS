@@ -9,73 +9,80 @@
     <link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
   </head>
 
-<!--log in session starts-->
-
-<div id="splashscreen" style="background-image: url('http://2.bp.blogspot.com/-BJdvrIgTQKQ/UobS7PHZv3I/AAAAAAAACDA/Gb_oUjnXRkM/s1600/P1030580.JPG'); background-position: center;">
-  <center>
   
 <body>
 
+<!--log in session starts-->
+
+<div id="splashscreen" style="background-image: url('http://2.bp.blogspot.com/-BJdvrIgTQKQ/UobS7PHZv3I/AAAAAAAACDA/Gb_oUjnXRkM/s1600/P1030580.JPG'); background-position: center;">
+
+<!---log in page header-->
+    <div id="login-splash-header">
+        <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
+        <a class="logotype-epics"><img class="logotype" src="images/E-PICKS.PNG" /></a>
+    </div>
+<!---header ends-->
+
+
 <!--login window-->
-
+<center>
     <br><br><br><br><br>
-    <div id = "login">
-<form id="fm1" >
+    <div id = "login"  style="padding: 20px; padding-top:20px; border: 15px solid #A37B2C; width: 280px; border ;border-radius: 30px;">
+        <a><img class="logotype" src="images/E-PICKS.PNG" /></a>
+      <fieldset>
+        <h2>Welcome!</h2>
 
-    <div style="padding: 30px; border: 15px solid #A37B2C; width: 300px; border ;border-radius: 30px;">
+        <label class = "login-label">Login: </label>
+        <input placeholder="Username" id="initialUser" type="text" name="Username" value="" size="25" maxlength="25" autocomplete="false"><br>
 
-    <fieldset>
-    <h2>Welcome !</h2>
+        <br>
 
-    <label for="username"><span>L</span>ogin:</label>
-    <input placeholder="Username" id="initialUser" type="text" name="Username" value="" size="25" maxlength="25" autocomplete="false" / ><br>
+        <label class="login-label">Password: </label>
+        <input placeholder="Password" id="initialPass" type="password" name="Password" value="" size="25" maxlength="25" autocomplete="off"/><br>
+        
+        <button ><a href="#" class="enter_link">Login</a></button>
 
-    <label for="password"><span>P</span>assword:</label>
-    <input placeholder="Password" id="initialPass" type="password" name="Password" value="" size="23" maxlength="23" autocomplete="off"/><br>
-    
-    <button><a href="#" class="enter_link">Login</a></button>
-  </center>
+      </fieldset>
 
+    </div>
+</center>
 
-
+<!--log in session ends-->
       <script>
-$('#initialPass').on("keypress", function(e) {
-  if (e.keyCode == 13) {
-      login(e);
-  }
-});
+        $('#initialPass').on("keypress", function(e) {
+          if (e.keyCode == 13) {
+              login(e);
+          }
+        });
 
-$('.enter_link').click(login);
+        $('.enter_link').click(login);
 
-function authHandler(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-}
+        function authHandler(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+        }
 
-function login(e) {
-    e.preventDefault();
-     myDataRef.authWithPassword({
-           "email": document.getElementById("initialUser").value,
-           "password": document.getElementById("initialPass").value 
-         }, authHandler, {remember: "sessionOnly"});
-     try { $('#admin').removeClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
-     return false;
-}
-</script>
+        function login(e) {
+            e.preventDefault();
+             myDataRef.authWithPassword({
+                   "email": document.getElementById("initialUser").value,
+                   "password": document.getElementById("initialPass").value 
+                 }, authHandler, {remember: "sessionOnly"});
+             try { $('#admin').removeClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
+             try { $('#splashscreen').addClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
+             return false;
+        }
       </script>
 
-
-        </div>
-    </div>
-<!--log in session ends-->
+</div>
+<!--end of splash-screen-->
 
 
-<!--ToDo: put all the html stuff here -->
 
-<!--main funtional page starts-->
+<!--main funtional page starts---------------------------------------->
 <div id='admin' class='hidden'>
 
 
@@ -83,165 +90,164 @@ function login(e) {
 
       <div id="splash-header">
         <a class="logotype-purdue" href="http://www.purdue.edu/"><img class="logotype" src="images/Purdue.png" /></a>
-        <a class="logotype" style="color:#a3792c;"> EPICKS ADMIN </a>
       </div>
 
 <!--header ends-->
 
 <!--sidebar starts-->
 
-<div id="sidebar">
-        <img class="sidebar-image" src="images/EPICS.png" />
-        <span class="sidebar-title lowercase">A d m i n </span>
-</div>
+      <div id="sidebar">
+              <img class="sidebar-image" src="images/E-PICKS.PNG" />
+              <span class="sidebar-title lowercase">A d m i n </span>
+      </div>
 <!--sidebar ends-->
 
-
 <!--main area -->
-<div id="mainArea">
+    <div id="mainArea">
 
 
-<!--logout function-->
-    <div id="logout">
-      <button onclick="logout()" style="float: right;">Log Out</button>
+      <!--logout function-->
+          <div id="logout">
+            <button onclick="logout()" style="float: right;">Log Out</button>
+          </div>
+
+      <!--logout function ends-->
+
+
+      <!--search division-->
+      <div id="search-box"> 
+
+          Search:
+          <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
+            <button onclick="ShowResult()" >Search</button>
+            <button onclick="ShowAddNewTeam()">Add Team</button>
+      </div>
+
+      <!--search result (style="display:none;")-->
+
+        <div id="searchResult" style="display:none;">
+
+        <label>Team Search Results</label><br>
+            <div class = "result-item">
+
+              <label id="result">ex.EPICKS </label>
+
+              <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
+              <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
+
+            </div>
+
+        </div>
+
+      <!--search result ends-->
+
+      <!--search division ends-->
+
+      <!--new team adding session (style="display:none;)"-->
+
+        <div id="addTeam" class="addTeam" style="display:none">
+          <label>Add New Team Information below:</label><br>
+
+            <form>
+              <label>Team Name</label>:
+
+              <input type="text" name="newName" id="newName" placeholder="Enter team name"><br>
+
+              <label>Team Acronym:</label>
+
+              <input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" ><br>
+
+              Website:
+
+              <input type="text" name="newWeb" id="newWebsite" placeholder="Enter a website"><br>
+
+              Day:
+
+              <select id="newDay">
+                <option>Choose a Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select><br> 
+
+              Time:
+
+              <select id = "newTime">
+                <option>Choose a Time</option>
+                <option value="1">8:30 AM - 10:20 AM</option>
+                <option value="2">10:30 AM - 12:20 PM</option>
+                <option value="3">1:30 PM - 3:20 PM</option>
+                <option value="4">3:30 PM - 5:20 PM</option>
+                <option value="5">Other</option>
+              </select><br>
+
+              Area of Impact:
+
+              <select id = "newAOI">
+                <option>Choose an Area</option>
+                <option value="Access & Abilities">Access & Abilities</option>
+                <option value="Education & Outreach">Education & Outreach</option>
+                <option value="Environment">Environment</option>
+                <option value="Human Services">Human Services</option>
+              </select><br>
+
+              Description:<br> 
+              <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
+            </form>
+
+
+          <!--submit new team -->
+          <input type="submit" value="Submit" onclick="submitNew()">
+          <!--done with submit button-->
+
+      </div>
+
+      <!-- all the teams are going here, change from all to just search results here. -->
+
+      <!--list of search results team info will be displayed below -->
+      <div id="team-objects" class="team-objects" style="display:none;">
+          
+          <!--form to collect changes-->
+            <form>
+              <label>Team Name: </label>
+              <input type="text" placeholder="" id="team_name" /><br>
+
+              <label>Acronym: </label>
+              <input type="text" placeholder="" id="abbrev" /><br>
+
+              <label>Major: </label>
+              <input type="text" placeholder="" id="major" /><br>
+
+              <label>Area of Impact: </label>
+              <input type="text" placeholder="" id="aoi" /><br>
+
+              <label>Day: </label>
+              <input type="text" placeholder="" id="day" /><br>
+
+              <label>Time: </label>
+              <input type="text" placeholder="" id="time" /><br>
+
+              <label>Description: </label>
+              <input type="text" placeholder="" id="desc" /><br>
+
+              <label>Website: </label>
+              <input type="text" placeholder="" id="web" /><br>
+
+            </form> 
+          <!--done collecting changes-->
+
+          <!--submit changes button -->
+          <input type="submit" value="Submit" onclick="submitChanges()"" >
+      </div>
+      <!--team edit ends-->
+      
     </div>
 
-<!--logout function ends-->
-
-
-<!--search division-->
-<div id="search-box"> 
-
-    Search:
-    <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
-      <button onclick="ShowResult()" >Search</button>
-      <button onclick="ShowAddNewTeam()">Add Team</button>
+      <!--end of mainArea-->
 </div>
-
-<!--search result (style="display:none;")-->
-
-  <div id="searchResult" >
-
-  <label>Team Search Results</label><br>
-
-      <label id="result">ex.EPICKS </label>
-
-      <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
-      <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
-  </div>
-
-<!--search result ends-->
-
-<!--search division ends-->
-
-<!--new team adding session (style="display:none;)"-->
-
-<div id="addTeam" >
-<label>Add New Team Information below:</label><br>
-
-<form>
-<label>Team Name</label>:
-
-<input type="text" name="newName" id="newName" placeholder="Enter team name"><br>
-
-<label>Team Acronym:</label>
-
-<input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" ><br>
-
-Website:
-
-<input type="text" name="newWeb" id="newWebsite" placeholder="Enter a website"><br>
-
-Day:
-
-<select id="newDay">
-  <option>Choose a Day</option>
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-</select><br> 
-
-Time:
-
-<select id = "newTime">
-  <option>Choose a Time</option>
-  <option value="1">8:30 AM - 10:20 AM</option>
-  <option value="2">10:30 AM - 12:20 PM</option>
-  <option value="3">1:30 PM - 3:20 PM</option>
-  <option value="4">3:30 PM - 5:20 PM</option>
-  <option value="5">Other</option>
-</select><br>
-
-Area of Impact:
-
-<select id = "newAOI">
-  <option>Choose an Area</option>
-  <option value="Access & Abilities">Access & Abilities</option>
-  <option value="Education & Outreach">Education & Outreach</option>
-  <option value="Environment">Environment</option>
-  <option value="Human Services">Human Services</option>
-</select><br>
-
-Description:<br> 
-<TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
-</form>
-
-
-<!--submit new team --(onclick="submitNew()")>
-<input type="submit" value="Submit" >
-<!--done with submit button-->
-
-</div>
-
-<!-- all the teams are going here, change from all to just search results here. -->
-
-<!--list of search results team info will be displayed below (style="display:none;")-->
-    <div id="team-objects" >
-    
-    <!--form to collect changes-->
-    <form>
-      <label>Team Name: </label>
-      <input type="text" placeholder="" id="team_name" /><br>
-
-      <label>Acronym: </label>
-      <input type="text" placeholder="" id="abbrev" /><br>
-
-      <label>Major: </label>
-      <input type="text" placeholder="" id="major" /><br>
-
-      <label>Area of Impact: </label>
-      <input type="text" placeholder="" id="aoi" /><br>
-
-      <label>Day: </label>
-      <input type="text" placeholder="" id="day" /><br>
-
-      <label>Time: </label>
-      <input type="text" placeholder="" id="time" /><br>
-
-      <label>Description: </label>
-      <input type="text" placeholder="" id="desc" /><br>
-
-      <label>Website: </label>
-      <input type="text" placeholder="" id="web" /><br>
-
-    </form> 
-    <!--done collecting changes-->
-
-    <!--submit changes button (value="Submit" onclick="submitChanges())"-->
-    <input type="submit" >
-    <!--submit changes ends-->
-
-    </div>
-
-<!--end of the list-->
-</div>
-
-<!--end of mainArea-->
-</div>
-
-<!--end of funtional page-->
+<!--end of admin page-->
   </body>
 </html>
 
@@ -250,7 +256,7 @@ Description:<br>
 <style> 
 
 
-html, body, div, span, h1, h2, fieldset, form, label, legend, {
+html, body, div, span, h1, form, label, legend, {
   font: 30px "Open Sans";
   color: #646464;
   background: #fafafa;
@@ -285,7 +291,7 @@ html, body, div, span, h1, h2, fieldset, form, label, legend, {
 
 
 h2 {
-  font-size:30%;
+  font-size:40px;
   font-weight:bold;
   color:#FFFFFF;
   text-align:center;
@@ -305,9 +311,10 @@ h2 {
 
 #login fieldset {
   margin:0 auto;
-  padding:114px 0 10px 0;
+  padding:50px 0 10px 0;
   text-align:left;
 }
+
 
 #sidebar {
   position: fixed;
@@ -352,7 +359,8 @@ h2 {
 fieldset label {
   display:block;
   font-weight:bold;
-  font-size:125%;
+  font-size:30px;
+  color:white;
 }
 fieldset input {
   font-size:145%;
@@ -441,9 +449,8 @@ fieldset p, fieldset div {
 //currently very wordy. please moditfy if you can
 
 function ShowAddNewTeam(){
-  //input form appears and search box hidden after "add Team" button clicked
+  //input form appears after "add Team" button clicked
   document.getElementById("addTeam").style.display = "block";
-  document.getElementById("search-box").style.display = "none";
 }
 
 function submitNew(){
@@ -453,9 +460,8 @@ function submitNew(){
 }
 
 function ShowResult(){
-  //search results appear and search box hidden after "search" button clicked
+  //search results appear after "search" button clicked
   document.getElementById("searchResult").style.display = "block";
-  document.getElementById("search-box").style.display = "none";
 }
 
 function edit1(){
