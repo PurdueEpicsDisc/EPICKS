@@ -120,18 +120,14 @@ function login(e) {
 
     Search:
     <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
-      <button onclick="search()" >Search</button>
+      <button ><a href="#" class="searchButton">Search</a></button>
       <button onclick="ShowAddNewTeam()">Add Team</button>
 </div>
 
 <!--search result (style="display:none;")-->
 
   <div id="searchResult" >
-
-  <label>Team Search Results</label><br>
-
-      <label id="result">ex.EPICKS </label>
-
+      <label id="results">Team Search Results</label>
       <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
       <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
   </div>

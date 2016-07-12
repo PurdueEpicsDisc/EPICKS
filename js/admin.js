@@ -144,20 +144,29 @@ function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) 
 
 //will add all teams on page load since calls can't be made after load
 
- function search() {
+$('document').ready(function() {
+  $('.searchButton').click(searchGroups);
+});
+
+ function searchGroups() {
+  event.preventDefault();
+  $('#searchResult').contents().each(function() {
+      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault()}
+  });
   try {
-    try { $('#searchResult').removeClass('hidden') } catch(err) {event.preventDefault()};
+    try { $('#searchResult').removeClass('hidden'); } catch(err) {event.preventDefault();};
     var searchRegex = new RegExp($('#wordSearch').val(), 'i');
     $('#searchResult').contents().each(function() {
       if (searchRegex.test(this.outerHTML)) {
-        this.removeClass('hidden');
+        $("#"+this.id).removeClass('hidden');
       }
-    })
-    return true;
+    });
   } catch(err) {
-    alert('invalid');
     event.preventDefault();
-    return false;
+    $('#searchResult').contents().each(function() {
+      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault()}
+    });
+    alert('invalid');
   }
 }
 
@@ -188,3 +197,4 @@ function submitChanges(){
   $("#search-box").removeClass('hidden');
   $("#team-objects").addClass('hidden');
 }
+
