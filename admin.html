@@ -50,8 +50,15 @@ $('.enter_link').click(login);
 function authHandler(error, authData) {
   if (error) {
     console.log("Login Failed!", error);
-  } else {
+  } else if (authData) {
     console.log("Authenticated successfully with payload:", authData);
+    $('#searchResult').addClass('hidden');
+    $('#addTeam').addClass('hidden');
+    $('#team-objects').addClass('hidden');
+    $('#admin').removeClass('hidden');
+    $('#splashscreen').addClass('hidden');
+  } else {
+    console.log("Authenticated successfully, authData incorrect", authData)
   }
 }
 
@@ -60,9 +67,7 @@ function login(e) {
      myDataRef.authWithPassword({
            "email": document.getElementById("initialUser").value,
            "password": document.getElementById("initialPass").value 
-         }, authHandler, {remember: "sessionOnly"});
-     try { $('#admin').removeClass('hidden'); } catch(err) {document.getElementById('error_message').append("failure in classes")}
-     $('#splashscreen').fadeOut();
+         }, authHandler/*, {remember: "sessionOnly"}*/);
      return false;
 }
 </script>
@@ -115,7 +120,7 @@ function login(e) {
 
     Search:
     <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
-      <button onclick="ShowResult()" >Search</button>
+      <button onclick="search()" >Search</button>
       <button onclick="ShowAddNewTeam()">Add Team</button>
 </div>
 
@@ -436,41 +441,4 @@ fieldset p, fieldset div {
 </style>
 
 
-
-<script>
-//these functions only work for button transitions. no info exchanged
-//currently very wordy. please moditfy if you can
-
-function ShowAddNewTeam(){
-  //input form appears and search box hidden after "add Team" button clicked
-  document.getElementById("addTeam").style.display = "block";
-  document.getElementById("search-box").style.display = "none";
-}
-
-function submitNew(){
-  //back to search/add step and input form hidden after "submit" button clicked
-  document.getElementById("search-box").style.display = "block";
-  document.getElementById("addTeam").style.display = "none";
-}
-
-function ShowResult(){
-  //search results appear and search box hidden after "search" button clicked
-  document.getElementById("searchResult").style.display = "block";
-  document.getElementById("search-box").style.display = "none";
-}
-
-function edit1(){
-  //existing team edit form appears and search results hidden after "edit" button clicked
-  document.getElementById("team-objects").style.display = "block";
-  document.getElementById("searchResult").style.display="none";
-}
-
-function submitChanges(){
-  //back to search/add step and edit form hidden after "submit" button clicked
-  document.getElementById("search-box").style.display = "block";
-  document.getElementById("team-objects").style.display = "none";
-}
-
-
-</script>
 
