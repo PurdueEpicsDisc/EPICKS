@@ -1,0 +1,500 @@
+/* line 5, ../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, fieldset, label, legend,
+table, caption, footer, header,
+menu, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+
+}
+ 
+
+/* line 45, ../sass/screen.scss */
+html, body {
+  font: 16px "Open Sans";
+  color: #646464;
+  background: #fafafa;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0px;
+}
+
+/* line 61, ../sass/screen.scss */
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+/* line 62, ../sass/screen.scss */
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+
+/* line 66, ../sass/screen.scss */
+.hidden {
+  display: none !important;
+}
+
+
+/* line 72, ../sass/screen.scss */
+#splash {
+  z-index: 10;
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url("../images/splash2.jpg") center center no-repeat;
+  background-size: cover;
+  cursor: default;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* line 90, ../sass/screen.scss */
+#splash-header {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+  overflow: hidden;
+  border-top: 20px solid #a3792c;
+  background: #231f20;
+  border-bottom: 3px solid #e4ae23;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  margin-left:15rem;
+}
+
+
+#login{
+  padding: 20px; 
+  padding-top:20px; 
+  border: 15px solid #B1810B; 
+  width: 280px;
+  border-radius: 30px; 
+  background-color:#000000;
+
+}
+
+
+/* line 100, ../sass/screen.scss */
+.logotype-purdue {
+  position: absolute;
+  top: 3rem;
+  left: 5rem;
+}
+
+/* line 105, ../sass/screen.scss */
+.logotype-epics {
+  position: absolute;
+  top: 3rem;
+  right: 5rem;
+}
+
+/* line 110, ../sass/screen.scss */
+.logotype {
+  height: 4rem;
+  width: auto;
+}
+
+/* line 115, ../sass/screen.scss */
+.splash-headline {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 5rem;
+  font: 2rem/3rem "Lora";
+  color: rgba(0,0,0,1);
+  text-align: right;
+  font-weight: bold;
+}
+
+
+
+/******************************************************/
+
+
+
+html, body, div, h1, legend, {
+  font: 30px "Open Sans";
+  color: #646464;
+  background: #fafafa;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 80%;
+  font-family: inherit;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+#login-splash-header {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+  overflow: hidden;
+  margin-left:0;
+  border-top: 20px solid #a3792c;
+  background: #231f20;
+  border-bottom: 3px solid #e4ae23;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+
+h2 {
+  font-size:40px;
+  font-weight:bold;
+  color:#FFFFFF;
+  text-align:center;
+  margin:0 0 1.3em;
+}
+
+h3 {
+  font-size:20px;
+  font-weight:bold;
+  color:#4D4038;
+  text-align:left;
+  margin:0;
+}
+
+#login form {
+  padding:0 50px 25px 50px;
+  min-height: 200px;
+  height: auto;
+}
+
+#login p {
+  text-align:left;
+  margin:10px 0;
+}
+
+#login fieldset {
+  margin:0 auto;
+  padding:50px 0 10px 0;
+  text-align:left;
+}
+
+
+#sidebar {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-right:20rem;
+  box-sizing: border-box;
+  width: 15rem;
+  height: 100%;
+  background: #231f20;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.sidebar-title {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  font: 1.5rem/2rem "Lora";
+  color: #B1810B;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+
+
+
+/* line 229, ../sass/screen.scss */
+.sidebar-image {
+  width: 10rem;
+  height: auto;
+}
+
+/* line 234, ../sass/screen.scss */
+.sidebar-item {
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5rem;
+  padding: 0.5rem 2rem;
+  margin: 0.5rem 0;
+  font: 1rem/2rem "Open Sans" !important;
+  color: #fafafa;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 246, ../sass/screen.scss */
+.sidebar-item:hover {
+  background: #746C66;
+}
+
+/* line 250, ../sass/screen.scss */
+.sidebar-item-title {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  font-weight: bold;
+}
+
+/* line 256, ../sass/screen.scss */
+.sidebar-item-object {
+  display: block;
+  height: 2rem;
+  background: #a3792c;
+  border-radius: 0.5rem;
+}
+
+
+#splash-header{
+  position:relative;
+  margin-left:15rem;
+}
+
+
+#mainArea{
+  position:absolute;
+  margin-left:15rem;
+  margin-right:15rem;
+  margin-bottom:50rem;
+  width:100%;
+  padding-left:20px;
+  padding-top:10px;
+}
+
+
+fieldset label {
+  display:block;
+  font-weight:bold;
+  font-size:30px;
+  color:white;
+}
+fieldset input {
+  font-size:145%;
+  width:100%;
+  font-weight:bold;
+  border:1px solid #EEEEEE;
+  border-left:1px solid #999999;
+  border-top:1px solid #999999;
+}
+fieldset input:focus {
+  border:1px solid ;
+  background:none #FFFFFF;
+}
+
+fieldset p, fieldset div {
+  margin:10px 20px !important;
+}
+
+#logout{
+  position:relative;
+  float:left;
+}
+
+/***********search box*******************************************/
+
+.clearfix { *zoom: 1; }
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; 
+}
+.clearfix:after { clear: both; }
+
+
+.container {
+  height: 80px;
+  width:50%;
+  margin-top:30px;
+  margin-left:20;
+  position: relative;
+  top: 20%;
+}
+
+/* ---------- SEARCH ---------- */
+
+
+
+#search {
+  background: transparent;
+  border-radius: 10px;
+  display: inline-block;
+  padding:7px;
+}
+
+#search input {
+  float: left;
+}
+
+#search input[type="search"],
+#search input[type="submit"] {
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#search input[type="search"] {
+  background: #fff
+  min-width: 184px;
+  padding: 6px 8px;
+}
+
+#search input[type="submit"] {
+  background: #B1810B;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 7px;
+  padding: 6px 10px;
+}
+
+
+#search input[type="submit"]:hover {
+  background: #4D4038;
+}
+
+#search input[type="search"]::-webkit-input-placeholder { color: #42454e; }
+#search input[type="search"]:-moz-placeholder { color: #42454e; }
+#search input[type="search"]:-ms-input-placeholder { color: #42454e; }
+
+/************************search box end*************************/
+
+
+
+#searchResult{
+  margin:20px;
+  border:solid;
+  border-radius:15px;
+  padding:20px;
+  width:50%;
+}
+
+.resultinfo{
+  border:solid;
+  border-width:3px;
+  border-color: #B1810B;
+  border-radius:25px;
+  padding:15px;
+  margin:5px;
+  width:85%;
+}
+
+.resultinfo > label {
+  display:block;
+}
+
+.resultinfo > input[id="editbutton"] {
+  background: #849E2A;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 7px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+
+.resultinfo > input[id="deletebutton"] {
+  background: #C76C14;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 2px;
+  margin-top:5px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+
+}
+
+#addTeam{
+  margin:20px;
+  width:50%;
+  border:solid;
+  border-radius:15px;
+  padding:20px;
+}
+
+.addTeam > label{
+  display:block;
+}
+
+.addTeam > input:not([id="newTsubmit"]), 
+.addTeam > select {
+  position:absolute;
+  
+}
+
+.addTeam > input[id="newTsubmit"] {
+  background: #849E2A;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 2px;
+  margin-top:5px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+
+}
+
+.EditTeam{
+  margin:20px;
+  width:50%;
+  border:solid;
+  border-radius:15px;
+  padding:20px;
+
+}
+
+.EditTeam > label {
+  display:block;
+}
+
+.EditTeam > input[id="submitchange"] {
+  background: #849E2A;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 2px;
+  margin-top:5px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+
+}
+
+
+#splashscreen {
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background-color:white;
+    overflow: hidden;
+}
+
+.hidden {
+  display:none;
+}
+
+
+
+
+
+
+

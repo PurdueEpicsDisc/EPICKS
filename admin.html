@@ -6,7 +6,7 @@
     <script src="js/admin.js"></script>
 
   <!--script list ends-->
-    <link rel='stylesheet' href='stylesheets/screen.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='stylesheets/adminstyle.css' type='text/css' media='all' />
   </head>
 
   
@@ -26,8 +26,8 @@
 
 <!--login window-->
 <center>
-    <br><br><br><br><br>
-    <div id = "login"  style="padding: 20px; padding-top:20px; border: 15px solid #A37B2C; width: 280px; border ;border-radius: 30px;">
+    <br><br><br>
+    <div id = "login" >
         <a><img class="logotype" src="images/E-PICKS.PNG" /></a>
       <fieldset>
         <h2>Welcome!</h2>
@@ -40,7 +40,7 @@
         <label class="login-label">Password: </label>
         <input placeholder="Password" id="initialPass" type="password" name="Password" value="" size="25" maxlength="25" autocomplete="off"/><br>
         
-        <button ><a href="#" class="enter_link">Login</a></button>
+        <button><a href="#" class="enter_link">Login</a></button>
 
       </fieldset>
 
@@ -113,31 +113,63 @@
 
       <!--logout function ends-->
 
+<!--search division-->
+          <div class="container">
+              
+              <div id="search">
 
-      <!--search division-->
-      <div id="search-box"> 
+                <form action="javascript:void(0);" method="GET">
 
-          Search:
-          <input type="text" name="keyword" id="wordSearch" placeholder="Enter keywords">
-            <button onclick="ShowResult()" >Search</button>
-            <button onclick="ShowAddNewTeam()">Add Team</button>
-      </div>
+                  <div class="clearfix">
+
+                    <input type="search" name="search" value="Search"> 
+                    <input type="submit" value="Search" class="button">
+                    
+                    <input type="submit" value="Add Team" class="button">
+
+                  </div>
+
+                </div>
+
+              </div> <!-- end search -->
+
+
 
       <!--search result (style="display:none;")-->
 
-        <div id="searchResult" style="display:none;">
+          <div id="searchResult" >
 
-        <label>Team Search Results</label><br>
-            <div class = "result-item">
+            <h3>Team Search Results: </h3><br>
+                  <div class ="resultinfo">
+                      <label>Team Name: 
+                      <a>Team A </a> 
+                      </label>
+                      <label>Acronym: 
+                      <a>  </a>
+                      </label>
+                      <label>Website: 
+                      <a>  </a>
+                      </label>
+                      <label>Day: 
+                      <a>  </a>
+                      </label>
+                      <label>Time: 
+                      <a>  </a>
+                      </label>
+                      <label>Area of Impact: 
+                      <a>  </a>
+                      </label>
+                      <label>Description: 
+                      <a>  </a>
+                      </label>
+                      <label>Active: 
+                      <a>  </a>
+                      </label>
 
-              <label id="result">ex.EPICKS </label>
-
-              <input id="editbutton" type="submit" value="Edit" onclick="edit1()" />
-              <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
-
-            </div>
-
-        </div>
+                      <input id="editbutton" type="submit" value="Edit" />
+                      <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
+                  </div>
+          </div>
 
       <!--search result ends-->
 
@@ -145,23 +177,26 @@
 
       <!--new team adding session (style="display:none;)"-->
 
-        <div id="addTeam" class="addTeam" style="display:none">
-          <label>Add New Team Information below:</label><br>
+        <div id="addTeam" class="addTeam" >
+          <h3>Add New Team Information below:</h3><br>
 
             <form>
-              <label>Team Name</label>:
+              <label>Team Name: 
 
-              <input type="text" name="newName" id="newName" placeholder="Enter team name"><br>
+              <input type="text" name="newName" id="newName" placeholder="Enter team name">
+              </label>
 
-              <label>Team Acronym:</label>
+              <label>Team Acronym: 
 
-              <input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" ><br>
+              <input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" >
+              </label>
 
-              Website:
+              <label>Website: 
 
-              <input type="text" name="newWeb" id="newWebsite" placeholder="Enter a website"><br>
+              <input type="text" name="newWeb" id="newWebsite" size="50" placeholder="Enter a website">
+              </label>
 
-              Day:
+              <label>Day: 
 
               <select id="newDay">
                 <option>Choose a Day</option>
@@ -170,9 +205,10 @@
                 <option value="Wednesday">Wednesday</option>
                 <option value="Thursday">Thursday</option>
                 <option value="Friday">Friday</option>
-              </select><br> 
+              </select>
+              </label>
 
-              Time:
+              <label>Time: 
 
               <select id = "newTime">
                 <option>Choose a Time</option>
@@ -181,9 +217,10 @@
                 <option value="3">1:30 PM - 3:20 PM</option>
                 <option value="4">3:30 PM - 5:20 PM</option>
                 <option value="5">Other</option>
-              </select><br>
+              </select>
+              </label>
 
-              Area of Impact:
+              <label>Area of Impact: 
 
               <select id = "newAOI">
                 <option>Choose an Area</option>
@@ -191,55 +228,108 @@
                 <option value="Education & Outreach">Education & Outreach</option>
                 <option value="Environment">Environment</option>
                 <option value="Human Services">Human Services</option>
-              </select><br>
+              </select>
+              </label>
 
-              Description:<br> 
-              <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA><br>
+              <label>Description: <br>
+              <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA>
+              </label>
+
+              <label>Active: 
+
+              <select id= "addAct">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              </label>
+
             </form>
 
 
           <!--submit new team -->
-          <input type="submit" value="Submit" onclick="submitNew()">
+          <input id="newTsubmit" type="submit" value="Submit" >
           <!--done with submit button-->
 
       </div>
 
       <!-- all the teams are going here, change from all to just search results here. -->
 
+
+
       <!--list of search results team info will be displayed below -->
-      <div id="team-objects" class="team-objects" style="display:none;">
+      <div id="EditTeam" class="EditTeam" >
           
           <!--form to collect changes-->
+          <h3 class="changeditem">Team A</h3><br>
+
             <form>
-              <label>Team Name: </label>
-              <input type="text" placeholder="" id="team_name" /><br>
+              <label>Team Name: 
 
-              <label>Acronym: </label>
-              <input type="text" placeholder="" id="abbrev" /><br>
+              <input type="text" id="team_name" placeholder="">
+              </label><br>
 
-              <label>Major: </label>
-              <input type="text" placeholder="" id="major" /><br>
+              <label>Team Acronym: 
 
-              <label>Area of Impact: </label>
-              <input type="text" placeholder="" id="aoi" /><br>
+              <input type="text" id="abbrev" placeholder="" >
+              </label><br>
 
-              <label>Day: </label>
-              <input type="text" placeholder="" id="day" /><br>
+              <label>Website: 
 
-              <label>Time: </label>
-              <input type="text" placeholder="" id="time" /><br>
+              <input type="text" id="web" size="50" placeholder="">
+              </label><br>
 
-              <label>Description: </label>
-              <input type="text" placeholder="" id="desc" /><br>
+              <label>Day: 
 
-              <label>Website: </label>
-              <input type="text" placeholder="" id="web" /><br>
+              <select id="editDay">
+                <option>Choose a Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select>
+              </label><br>
 
-            </form> 
+              <label>Time: 
+
+              <select id = "editTime">
+                <option>Choose a Time</option>
+                <option value="1">8:30 AM - 10:20 AM</option>
+                <option value="2">10:30 AM - 12:20 PM</option>
+                <option value="3">1:30 PM - 3:20 PM</option>
+                <option value="4">3:30 PM - 5:20 PM</option>
+                <option value="5">Other</option>
+              </select>
+              </label><br>
+
+              <label>Area of Impact: 
+
+              <select id = "editAOI">
+                <option>Choose an Area</option>
+                <option value="Access & Abilities">Access & Abilities</option>
+                <option value="Education & Outreach">Education & Outreach</option>
+                <option value="Environment">Environment</option>
+                <option value="Human Services">Human Services</option>
+              </select>
+              </label><br>
+
+              <label>Description: <br>
+              <TEXTAREA id="desc" ROWS=3 COLS=30 ></TEXTAREA>
+              </label><br>
+
+              <label>Active: 
+
+              <select id= "editAct">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              </label><br>
+
+            </form>
           <!--done collecting changes-->
 
           <!--submit changes button -->
-          <input type="submit" value="Submit" onclick="submitChanges()"" >
+          <input id="submitchange" type="submit" value="Submit" >
       </div>
       <!--team edit ends-->
       
@@ -250,232 +340,4 @@
 <!--end of admin page-->
   </body>
 </html>
-
-
-<!-- add to the css here -->
-<style> 
-
-
-html, body, div, span, h1, form, label, legend, {
-  font: 30px "Open Sans";
-  color: #646464;
-  background: #fafafa;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 80%;
-  font-family: inherit;
-  vertical-align: baseline;
-  background: transparent;
-}
-
-#login-splash-header {
-  position: relative;
-  height: 10rem;
-  width: 100%;
-  overflow: hidden;
-  margin-left:0;
-  border-top: 20px solid #a3792c;
-  background: #231f20;
-  border-bottom: 3px solid #e4ae23;
-  -moz-user-select: -moz-none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-
-
-h2 {
-  font-size:40px;
-  font-weight:bold;
-  color:#FFFFFF;
-  text-align:center;
-  margin:0 0 1.3em;
-}
-
-#login form {
-  padding:0 50px 25px 50px;
-  min-height: 200px;
-  height: auto;
-}
-
-#login p {
-  text-align:left;
-  margin:10px 0;
-}
-
-#login fieldset {
-  margin:0 auto;
-  padding:50px 0 10px 0;
-  text-align:left;
-}
-
-
-#sidebar {
-  position: fixed;
-  z-index: 50;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin-right:20rem;
-  box-sizing: border-box;
-  width: 15rem;
-  height: 100%;
-  background: #231f20;
-  padding: 1rem 0;
-  text-align: center;
-}
-
-.sidebar-title {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  font: 1.5rem/2rem "Lora";
-  color: #a3792c;
-  text-align: center;
-  margin: 0 0 1rem 0;
-}
-
-#splash-header{
-  position:relative;
-  margin-left:15rem;
-}
-
-
-#mainArea{
-  position:relative;
-  margin-left:15rem;
-  margin-right:15rem;
-  margin-bottom:50rem;
-  width:100%;
-  padding-left:20px;
-  padding-top:10px;
-}
-fieldset label {
-  display:block;
-  font-weight:bold;
-  font-size:30px;
-  color:white;
-}
-fieldset input {
-  font-size:145%;
-  width:100%;
-  font-weight:bold;
-  border:1px solid #EEEEEE;
-  border-left:1px solid #999999;
-  border-top:1px solid #999999;
-}
-fieldset input:focus {
-  border:1px solid ;
-  background:none #FFFFFF;
-}
-
-fieldset p, fieldset div {
-  margin:10px 20px !important;
-}
-
-#logout{
-  position:relative;
-  float:left;
-}
-
-#search-box{
-  background-color:#808080; 
-  outline-style: solid;
-  padding : 10px; 
-  margin-top:30px;
-
-}
-
-#searchResult{
-  margin-top:30px;
-  outline-style:solid;
-  padding:10px;
-}
-
-#editbutton{
-  margin-left:30px;
-}
-
-#addTeam{
-  margin-top:30px;
-  outline-style:solid;
-  padding:10px;
-
-}
-
-#addTeam > form >label{
-  width:px;
-}
-
-#team-objects{
-  margin-top:30px;
-  padding:10px;
-  margin-bottom:20px;
-  outline-style:solid;
-
-}
-
-#splashscreen {
-    position: fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:100%;
-    background-color:white;
-    overflow: hidden;
-
-    .highlight
-    {
-      background-color: yellow;
-    }
-}
-
-.hidden {
-  display:none;
-}
-</style>
-
-
-
-<script>
-//these functions only work for button transitions. no info exchanged
-//currently very wordy. please moditfy if you can
-
-function ShowAddNewTeam(){
-  //input form appears after "add Team" button clicked
-  document.getElementById("addTeam").style.display = "block";
-}
-
-function submitNew(){
-  //back to search/add step and input form hidden after "submit" button clicked
-  document.getElementById("search-box").style.display = "block";
-  document.getElementById("addTeam").style.display = "none";
-}
-
-function ShowResult(){
-  //search results appear after "search" button clicked
-  document.getElementById("searchResult").style.display = "block";
-}
-
-function edit1(){
-  //existing team edit form appears and search results hidden after "edit" button clicked
-  document.getElementById("team-objects").style.display = "block";
-  document.getElementById("searchResult").style.display="none";
-}
-
-function submitChanges(){
-  //back to search/add step and edit form hidden after "submit" button clicked
-  document.getElementById("search-box").style.display = "block";
-  document.getElementById("team-objects").style.display = "none";
-}
-
-
-</script>
 
