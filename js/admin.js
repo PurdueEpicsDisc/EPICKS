@@ -8,8 +8,43 @@ if (authData) {
   $('#splashscreen').addClass('hidden');
 }
 
+$('#initialPass').on("keypress", function(e) {
+  if (e.keyCode == 13) {
+      login(e);
+  }
+});
+
+$('.enter_link').click(login);
+
+function authHandler(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else if (authData) {
+    console.log("Authenticated successfully with payload:", authData);
+    $('#searchResult').addClass('hidden');
+    $('#addTeam').addClass('hidden');
+    $('#team-objects').addClass('hidden');
+    $('#admin').removeClass('hidden');
+    $('#splashscreen').addClass('hidden');
+  } else {
+    console.log("Authenticated successfully, authData incorrect", authData)
+  }
+}
+
+function login(e) {
+    e.preventDefault();
+     myDataRef.authWithPassword({
+           "email": document.getElementById("initialUser").value,
+           "password": document.getElementById("initialPass").value 
+         }, authHandler/*, {remember: "sessionOnly"}*/);
+     return false;
+}
+
 //this adds all the teams to the page on load
 try {myDataRef.on('child_added', function(snapshot) {
+  /* This is a way to add new fields to the database
+  var newRef = myDataRef.child(snapshot.val().team_abbrev);
+  newRef.update({active: 1}); */
   var team = snapshot.val();
     displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time, team.website, team.time_num);
 }); }
@@ -94,6 +129,7 @@ function submit(thing) { //add new group function
 
   document.location.reload(true); 
 }
+
 
 function logout() {
 myDataRef.unauth();
