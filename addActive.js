@@ -1,9 +1,9 @@
-var myDataRef = new Firebase('https://e-picks-purdue.firebaseio.com/');
-myDataRef.authWithPassword({
+var ref = new Firebase('https://e-picks-purdue.firebaseio.com/');
+ref.authWithPassword({
    "email": "user3@example.com",
    "password": "Epicks123"
-}, authHandler() {if(error)}/*, {remember: "sessionOnly"}*/);
+}, function() {if(error){} else {}});
 
-myDataRef.on('child_added', function(snapshot) {
-  
+ref.on('child_added', function(snapshot) {
+  snapshot.update({active: 1})
 });

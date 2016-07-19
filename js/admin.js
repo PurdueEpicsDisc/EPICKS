@@ -8,14 +8,6 @@ if (authData) {
   $('#splashscreen').addClass('hidden');
 }
 
-$('#initialPass').on("keypress", function(e) {
-  if (e.keyCode == 13) {
-      login(e);
-  }
-});
-
-$('.enter_link').click(login);
-
 function authHandler(error, authData) {
   if (error) {
     console.log("Login Failed!", error);
@@ -33,7 +25,7 @@ function authHandler(error, authData) {
 
 function login(e) {
     e.preventDefault();
-     myDataRef.authWithPassword({
+    myDataRef.authWithPassword({
            "email": document.getElementById("initialUser").value,
            "password": document.getElementById("initialPass").value 
          }, authHandler/*, {remember: "sessionOnly"}*/);
@@ -182,6 +174,14 @@ function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, time_num) 
 
 $('document').ready(function() {
   $('.searchButton').click(searchGroups);
+
+  $('#initialPass').on("keypress", function(e) {
+    if (e.keyCode == 13) {
+      login(e);
+    }
+  });
+
+  $('.enter_link').click(login);
 });
 
  function searchGroups() {
