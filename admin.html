@@ -71,6 +71,21 @@
       <div id="sidebar">
               <img class="sidebar-image" src="images/E-PICKS.PNG" />
               <span class="sidebar-title lowercase">A d m i n </span>
+
+          <div class="sidebar-item sidebar-item" data-field="all" data-filter="all">
+              <span class="sidebar-item-object">View All Teams</span>
+
+          </div>
+
+          <div class="sidebar-item sidebar-item" data-field="active" data-filter="active">
+              <span class="sidebar-item-object" >View Active</span>
+          </div>
+
+          <div class="sidebar-item sidebar-item" data-field="inactive" data-filter="inactive">
+              <span class="sidebar-item-object" >View Inactive</span>
+          </div>
+
+
       </div>
 <!--sidebar ends-->
 
@@ -195,14 +210,29 @@
 
               <label>Area of Impact: 
 
-              <select id = "newAOI">
+              <select id = "newAOI" onchange="addNewAOI();">
                 <option>Choose an Area</option>
                 <option value="Access & Abilities">Access & Abilities</option>
                 <option value="Education & Outreach">Education & Outreach</option>
                 <option value="Environment">Environment</option>
                 <option value="Human Services">Human Services</option>
+                <option value="New AOI">None of the above</option> 
               </select>
+
+                  <div class="hidden" id="newAOIinput"> 
+                     <label >Input New Area of Impact:
+                      <input type="text" id="newAOIOption" size="30" placeholder="Enter New Area of Impact">  <!--shows up only when "input new area of impact" is selected-->
+                  </div>
+
               </label>
+
+              
+
+              <label>Preferred Majors: 
+              <input type="text" name="newMajor" id="newMajor" size="30" placeholder="Enter Preferred Majors">
+
+              </label>
+
 
               <label>Description: <br>
               <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA>
@@ -277,14 +307,28 @@
 
               <label>Area of Impact: 
 
-              <select id = "editAOI">
+              <select id = "editAOI" onchange="addNewAOI();">
                 <option>Choose an Area</option>
                 <option value="Access & Abilities">Access & Abilities</option>
                 <option value="Education & Outreach">Education & Outreach</option>
                 <option value="Environment">Environment</option>
                 <option value="Human Services">Human Services</option>
-              </select>
+                <option value="New AOI">None of the above</option> 
+              </select><br>
+
+                  <div class="hidden" id="editAOIinput"> 
+                     <label >Input New Area of Impact:
+                      <input type="text" id="editAOIoption" size="30" placeholder="Enter New Area of Impact">  <!--shows up only when "input new area of impact" is selected-->
+                  </div>
+
+              </label>
+
+
+              <label>Preferred Majors: 
+              <input type="text" name="editMajor" id="editMajor" size="30" placeholder="">
+
               </label><br>
+
 
               <label>Description: <br>
               <TEXTAREA id="desc" ROWS=3 COLS=30 ></TEXTAREA>
