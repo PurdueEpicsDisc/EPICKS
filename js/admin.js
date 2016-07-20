@@ -234,3 +234,14 @@ function submitChanges(){
   $("#team-objects").addClass('hidden');
 }
 
+function addNewAOI(){
+  //input for new AOI shows up when "none of the above" selected
+  var newselection= document.getElementById("editAOI").value;
+  var editselection= document.getElementById("newAOI").value;
+  
+      if(newselection = "New AOI")
+       $("#editAOIinput").removeClass('hidden');
+       
+       if(editselection = "New AOI")
+       $("#newAOIinput").removeClass('hidden');
+}
