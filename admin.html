@@ -1,7 +1,7 @@
 <html>
   <head>
   <!--scirpt-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="js/admin.js"></script>
 
@@ -110,8 +110,8 @@
 
                   <div class="clearfix">
 
-                    <input type="search" name="search" value="Search"> 
-                    <input type="submit" value="Search" class="button">
+                    <input id = "wordSearch" type="search" name="search" value="Search"> 
+                    <input id = "searchButton" type="submit" value="Search" class="button">
                     
                     <input type="submit" value="Add Team" class="button">
 
@@ -128,7 +128,7 @@
           <div id="searchResult" >
 
             <h3>Team Search Results: </h3><br>
-                  <div class ="resultinfo">
+                  <div class ="resultinfo" id ="teamAcronym">
                       <label>Team Name: 
                       <a>Team A </a> 
                       </label>
