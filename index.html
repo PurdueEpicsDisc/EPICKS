@@ -126,6 +126,9 @@
 				var myDataRef = new Firebase('https://e-picks-purdue.firebaseio.com/'); //myDataRef is the firbase object used to do everything Firebase 
       			myDataRef.on('child_added', function(snapshot) { //every time a new team is added to firebase add it to the website
         			var team = snapshot.val(); //JSON object of team
+        			if (!team.active) {
+        				return false;
+        			}
         			var aoi_array = team.aoi.split(" ", 1);
         			var aoi_string = aoi_array[0].toLowerCase();
         			displayTeamInfo(team.team_abbrev, team.description, team.aoi, aoi_string, team.day, team.team_name, team.time, team.website, team.time_num);

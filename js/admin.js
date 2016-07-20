@@ -34,7 +34,7 @@ function login(e) {
 
 //this adds all the teams to the page on load
 try {myDataRef.on('child_added', function(snapshot) {
-  /* This is a way to add new fields to the database
+  /* This is a way to add new fields to the database for future use
   var newRef = myDataRef.child(snapshot.val().team_abbrev);
   newRef.update({active: 1}); */
   var team = snapshot.val();
@@ -224,7 +224,7 @@ function submitNew(){
 
 function edit1(){
   //existing team edit form appears and search results hidden after "edit" button clicked
-  $("#team-objects").removeClass('hidden');
+  $("#editTeam").removeClass('hidden');
   $("#searchResult").addClass('hidden');
 }
 
@@ -233,17 +233,4 @@ function submitChanges(){
   $("#search-box").removeClass('hidden');
   $("#team-objects").addClass('hidden');
 }
-
-function addNewAOI(){
-  //input for new AOI shows up when "none of the above" selected
-  var newselection= document.getElementById("editAOI").value;
-  var editselection= document.getElementById("newAOI").value;
-
-  if(newselection = "New AOI")
-  $("#editAOIinput").removeClass('hidden');
-
-  if(editselection = "New AOI")
-  $("#newAOIinput").removeClass('hidden');
-}
-
 
