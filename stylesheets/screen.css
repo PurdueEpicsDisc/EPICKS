@@ -135,7 +135,7 @@ a {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url("../images/splash2.jpg") center center no-repeat;
+  background: url("../images/splash3.jpg") center center no-repeat;
   background-size: cover;
   cursor: default;
   -moz-user-select: -moz-none;
@@ -150,9 +150,8 @@ a {
   height: 10rem;
   width: 100%;
   overflow: hidden;
-  border-top: 20px solid #a3792c;
-  background: #231f20;
-  border-bottom: 3px solid #e4ae23;
+  border-top: 10px solid #e4ae23;
+  background: black;
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   -webkit-user-select: none;
@@ -185,9 +184,9 @@ a {
   box-sizing: border-box;
   width: 100%;
   padding: 1rem 5rem;
-  font: 2rem/3rem "Lora";
-  color: rgba(0,0,0,1);
-  text-align: right;
+  font: 28px Arial;
+  color: black;
+  text-align: left;
   font-weight: bold;
 }
 
@@ -214,22 +213,24 @@ a {
   -o-transition: all 0.5s ease-in-out;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  box-sizing: border-box;
-  width: 30rem;
-  height: 5rem;
-  margin: 1rem auto;
-  border: 2px solid #c9b95f;
-  border-radius: 1rem;
+  width:25rem;
+  height:5rem;
+  background:rgba(13, 12, 11, 0.36);
+  border: 1px solid white;
+  border-radius:1rem;
+  margin-top:13rem;
+  margin-left:33rem;
   font: 1.5rem/5rem "Open Sans";
-  color: #fafafa;
+  color: #c9b95f;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
+ 
 }
 /* line 153, ../sass/screen.scss */
 #splash-start:hover {
-  background: rgba(250, 250, 250, 0.75);
-  color: #7a7a7a;
+  background: rgba(13,12,11,0.96);
+  color: #DFE2DD;
 }
 
 /* line 159, ../sass/screen.scss */
