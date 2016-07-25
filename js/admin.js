@@ -19,7 +19,7 @@ function authHandler(error, authData) {
     $('#admin').removeClass('hidden');
     $('#splashscreen').addClass('hidden');
   } else {
-    console.log("Authenticated successfully, authData incorrect", authData)
+    console.log("Authenticated successfully, authData incorrect", authData);
   }
 }
 
@@ -32,166 +32,249 @@ function login(e) {
      return false;
 }
 
-//this adds all the teams to the page on load
-try {myDataRef.on('child_added', function(snapshot) {
-  /* This is a way to add new fields to the database for future use
-  var newRef = myDataRef.child(snapshot.val().team_abbrev);
-  newRef.update({active: 1}); */
-  var team = snapshot.val();
-  displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time, team.website, team.active);
-}); }
-catch(err) {
-  alert("failed to load teams");
-}
-
-function submit(thing) { //add new group function
-
-
-  var team_name = thing.parentElement.children[0].value;
-  var team_abbrev = thing.parentElement.children[2].value;
-  var website = thing.parentElement.children[4].value;
-  var day = thing.parentElement.children[6].value;
-  var time_num = thing.parentElement.children[8].value;
-  switch(time_num){
-    case "1":
-      var time = "8:30 AM - 10:20 AM";
-      break;
-    case "2":
-      var time = "10:30 AM - 12:20 PM";
-      break;
-    case "3":
-      var time = "1:30 PM - 3:20 PM";
-      break;
-    case "4":
-      var time = "3:30 PM - 5:20 PM";
-      break;
-    default:
-      var time = "Other";
-  }
-  var aoi = thing.parentElement.children[10].value;
-  var desc = thing.parentElement.children[13].value;
-  /*  
-  var day = $('#newDay').val();
-  $('#newDay').val('Choose a Day');
-  var desc = $('#newDesc').val();
-  $('#newDesc').val(null);
-  var team_abbrev = $('#newAc').val();
-  $('#newAc').val(null);
-  var team_name = $('#newName').val();
-  $('#newName').val(null);
-  var time_num = $('#newTime').val();
-  $('#newTime').val('Choose a Time');
-  switch(time_num){
-    case "1":
-      var time = "8:30 AM - 10:20 AM";
-      break;
-    case "2":
-      var time = "10:30 AM - 12:20 PM";
-      break;
-    case "3":
-      var time = "1:30 PM - 3:20 PM";
-      break;
-    case "4":
-      var time = "3:30 PM - 5:20 PM";
-      break;
-    default:
-      var time = "Something is messed up";
-  }
-  var website = $('#newWebsite').val();
-  $('#newWebsite').val(null);
-  var aoi = $('#newAOI').val();
-  $('#newAOI').val('Choose an Area');
-  */
-
-
-  //alert(day + "  "+ desc + "  "+ team_abbrev + "  "+ team_name +  "  " + time + "  " + time_num + "  " + website);
-
-  var tempRef = myDataRef.child(team_abbrev); //myDataRef is the Firebase object and this adds a new child titled with the description field.
-
-  tempRef.update({ //update function makes changes to JSON fields
-     aoi: aoi,
-     day: day,
-     description: desc,
-     team_abbrev: team_abbrev,
-     team_name: team_name,
-     time: time,
-     time_num: time_num,
-     website: website
-  });
-
-  document.location.reload(true); 
-}
-
-
-function logout() {
-myDataRef.unauth();
-$('#admin').addClass("hidden");
-document.location.reload(true);
-}
-
-function goodbye(abbrev) { //other function names might conflict with standard names
-//alert(abbrev);
-
-  var r = confirm("Are you sure?");
-  if (r == true) {
-    x = "Team Deleted";
-  } else {
+function edit(thing) { //add new group function
+  event.preventDefault();
+  var form = thing.parentElement.children[1];
+  if(!form.children[1].value) {
     return;
   }
 
-  var delChild = myDataRef.child(abbrev);
-  delChild.remove();
-  document.location.reload(true);
-}
-//ToDo - make on edit show old data
-function edit(abbrev) {
-  //alert(abbrev);
-  var ed = myDataRef.child(abbrev);
+  //get all the values from the form, i stands for input so we don't confuse the variable with the firebase key
+  var team_namei = form.children[1].value;
+  var team_abbrevi = form.children[3].value;
+  var websitei = form.children[5].value;
+  var dayi = form.children[7].value;
+  var time_numi = form.children[9].value;
+  var timei;
+  switch(time_numi){
+    case "1":
+      timei = "8:30 AM - 10:20 AM";
+      break;
+    case "2":
+      timei = "10:30 AM - 12:20 PM";
+      break;
+    case "3":
+      timei = "1:30 PM - 3:20 PM";
+      break;
+    case "4":
+      timei = "3:30 PM - 5:20 PM";
+      break;
+    default:
+      timei = "Other";
+  }
+  var aoii = form.children[11].value;
+  var desci = form.children[13].value;
+  var activei = form.children[15].value;
 
-  var name, acc, web, day, time, aoi, desc;
+  //myDataRef is the Firebase object and this adds a new child titled with the description field.
+  var tempRef = myDataRef.child(team_abbrevi); 
 
-  ed.once("value", function(snapshot) {
-    name = snapshot.val().team_name;
-    acc = snapshot.val().team_abbrev;
-    web = snapshot.val().website; 
-    day = snapshot.val().day;
-    aoi = snapshot.val().aoi;
-    desc = snapshot.val().description;
-    time = snapshot.val().time;
+  //update function makes changes to JSON fields
+  tempRef.update({ 
+     team_name: team_namei,
+     team_abbrev: team_abbrevi,
+     website: websitei,
+     day: dayi,
+     time_num: time_numi,
+     time: timei,
+     aoi: aoii,
+     desc: desci,
+     active: activei
   });
 
-  $("#" + abbrev).remove();
-  //The below should be replaced with the new edit form
-  $("#" + abbrev + "outer").append($('<div>Team Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamName" id="newName'+acc+'" value="'+name+'"><br>Team Acronym:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="TeamAcronym" id="newAc'+acc+'" value="'+acc+'"><br>Website:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Website" value="'+web+'" id="newWebsite'+acc+'"><br>Day:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="newDay'+acc+'"><option>'+day+'</option><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option></select><br> Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select value="'+time+'" id = "newTime'+acc+'">  <option value="1">8:30 AM - 10:20 AM</option><option value="2">10:30 AM - 12:20 PM</option><option value="3">1:30 PM - 3:20 PM</option><option value="4">3:30 PM - 5:20 PM</option><option value="5">Other</option></select><br>Area of Impact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id = "newAOI'+acc+'"><option>'+aoi+'</option><option value="Access & Abilities">Access & Abilities</option><option value="Education & Outreach">Education & Outreach</option><option value="Environment">Environment</option><option value="Human Services">Human Services</option></select><br>Description:<br> <TEXTAREA NAME="Description" id="newDesc'+acc+'" ROWS=5 COLS=50 >'+desc+'</textarea><br><input type="submit" onclick="submit(this)" value="Submit">'));
 }
 
-function displayTeamInfo(abbrev, desc, aoi, day, name, time, website, active) {
-  //remember to get rid of the onclick here
-  $("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><label>Team Name: <a>'+name+'</a> </label><label>Acronym: <a>'+abbrev+'</a></label><label>Website: <a>'+website+'  </a></label><label>Day: <a>'+day+'  </a></label><label>Time: <a>'+time+' </a></label><label>Area of Impact: <a>'+aoi+'  </a></label><label>Description: <a> '+desc+' </a></label><label>Active: <a> '+active+' </a></label><input id="editbutton" type="submit" value="Edit" /><input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" /></div>'); 
-  return;
-}; 
+//creates a new team from teamSubmit
+function createNewTeam(thing) {
+  event.preventDefault();
+  var form = thing.parentElement.children[1];
+  if(!form.children[1].value) {
+    return;
+  }
 
-//will add all teams on page load since calls can't be made after load
+  //get all the values from the form, i stands for input so we don't confuse the variable with the firebase key
+  var team_namei = form.children[1].value;
+  var team_abbrevi = form.children[3].value;
+  var websitei = form.children[5].value;
+  var dayi = form.children[7].value;
+  var time_numi = form.children[9].value;
+  var timei;
+  switch(time_numi){
+    case "1":
+      timei = "8:30 AM - 10:20 AM";
+      break;
+    case "2":
+      timei = "10:30 AM - 12:20 PM";
+      break;
+    case "3":
+      timei = "1:30 PM - 3:20 PM";
+      break;
+    case "4":
+      timei = "3:30 PM - 5:20 PM";
+      break;
+    default:
+      timei = "Other";
+  }
+  var aoii = form.children[11].value;
+  var desci = form.children[13].value;
+  var activei = form.children[15].value;
+
+  var tempRef = myDataRef.child(team_abbrevi);
+  //myDataRef is the Firebase object and push adds a new team
+
+  tempRef.update({
+      team_name: team_namei,
+      team_abbrev: team_abbrevi,
+      website: websitei,
+      day: dayi,
+      time_num: time_numi,
+      time: timei,
+      aoi: aoii,
+      desc: desci,
+      active: activei
+  }); 
+
+  $('#addTeam').addClass('hidden');
+
+}
+
+function logout() {
+myDataRef.unauth();
+document.location.reload(true);
+}
+
+
+function displayTeamInfo(abbrev, desc, aoi, day, name, time_num, time, website, active) {
+  //remember to get rid of the onclick here
+  //$("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><label>Team Name: <a>'+name+'</a> </label><label>Acronym: <a>'+abbrev+'</a></label><label>Website: <a>'+website+'  </a></label><label>Day: <a>'+day+'  </a></label><label>Time: <a>'+time+' </a></label><label>Area of Impact: <a>'+aoi+'  </a></label><label>Description: <a> '+desc+' </a></label><label>Active: <a> '+active+' </a></label><input id="editbutton" type="submit" value="Edit" /><input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" /></div>'); 
+  $("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><!--form to collect changes--><h3 class="changeditem">'+name+'</h3><form class="hidden"><label>Team Name:</label> <input type="text" class="edit_team_name" value="'+name+'"> <label>Team Acronym: </label><input type="text" class="edit_abbrev" value="'+abbrev+'" > <label>Website: </label><input type="text" class="edit_web" value="'+website+'"> <label>Day: </label><select class="editDay">'
+    +'<option value="'+day+'">'+day+'</option> <option value="Monday">Monday</option> <option value="Tuesday">Tuesday</option> <option value="Wednesday">Wednesday</option> <option value="Thursday">Thursday</option> <option value="Friday">Friday</option> </select><label>Time: </label><select class = "editTime"> <option value="'+time_num+'">'+time+'</option> <option value="1">8:30 AM - 10:20 AM</option> <option value="2">10:30 AM - 12:20 PM</option> <option value="3">1:30 PM - 3:20 PM</option> <option value="4">3:30 PM - 5:20 PM</option> <option value="5">Other</option> </select> <label>Area of Impact: '
+    +'</label> <select class = "editAOI"> <option value="'+aoi+'">'+aoi+'</option>'
+    +' <option value="Access & Abilities">Access & Abilities</option> <option value="Education & Outreach">Education & Outreach</option> <option value="Environment">Environment</option> <option value="Human Services">Human Services</option> </select>'
+    +' <!--<label>Preferred Majors: <input type="text" name="editMajor" class="editMajor" size="30" placeholder=""> --> <label>Description: </label> <TEXTAREA class="desc" ROWS=6 >'+desc+'</TEXTAREA> <label>Active: </label><select class= "editAct"> <option value=1>Yes</option> <option value=0>No</option> </select>  </form> <!--done collecting changes--> <!--submit changes button --> <button class="submitchange hidden" type="button" onclick="edit(this)" value="Submit"> Submit </button></div>');
+        /* Pretty version of the unholy mess above
+        '<div class ="resultinfo" id='+abbrev+'>
+          <!--form to collect changes-->
+          <h3 class="changeditem">'+name+'</h3><br>
+            <form>
+              <label>Team Name: 
+              <input type="text" class="edit_team_name" placeholder="'+name+'">
+              </label><br>
+              <label>Team Acronym: 
+              <input type="text" class="edit_abbrev" placeholder="'+abbrev+'" >
+              </label><br>
+              <label>Website: 
+              <input type="text" class="edit_web" size="50" placeholder="'+website+'">
+              </label><br>
+              <label>Day: 
+              <select class="editDay">
+                <option>Choose a Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select>
+              </label><br>
+              <label>Time: 
+              <select class = "editTime">
+                <option>Choose a Time</option>
+                <option value="1">8:30 AM - 10:20 AM</option>
+                <option value="2">10:30 AM - 12:20 PM</option>
+                <option value="3">1:30 PM - 3:20 PM</option>
+                <option value="4">3:30 PM - 5:20 PM</option>
+                <option value="5">Other</option>
+              </select>
+              </label><br>
+              <label>Area of Impact: 
+              <select class = "editAOI" onchange="addNewAOI();">
+                <option>Choose an Area</option>
+                <option value="Access & Abilities">Access & Abilities</option>
+                <option value="Education & Outreach">Education & Outreach</option>
+                <option value="Environment">Environment</option>
+                <option value="Human Services">Human Services</option>
+              </select><br>
+                  <div class="hidden" id="editAOIinput"> 
+                     <label >Input New Area of Impact:
+                      <input type="text" class="editAOIoption" size="30" placeholder="Enter New Area of Impact">  <!--shows up only when "input new area of impact" is selected-->
+                  </div>
+              </label>
+              <!--<label>Preferred Majors: 
+              <input type="text" name="editMajor" class="editMajor" size="30" placeholder=""> -->
+              </label><br>
+              <label>Description: <br>
+              <TEXTAREA class="desc" ROWS=3 COLS=30 >'+desc+'</TEXTAREA>
+              </label><br>
+              <label>Active: 
+              <select class= "editAct">
+                <option value=1>Yes</option>
+                <option value=0>No</option>
+              </select>
+              </label><br>
+            </form>
+          <!--done collecting changes-->
+          <!--submit changes button -->
+          <input class="submitchange" type="submit" value="Submit" >
+      </div>' */
+  return;
+}
 
 $('document').ready(function() {
+  //search button
   $('#searchButton').click(searchGroups);
 
+  //login when people press enter
   $('#initialPass').on("keypress", function(e) {
     if (e.keyCode == 13) {
       login(e);
     }
   });
 
-  $('.enter_link').click(login);
+  //login when the login button is clicked
+  $('#enter').click(login);
+
+  //expand each team for editing
+  $('#searchResult').on('click', '.changeditem', function() {
+    $(this).siblings('form').toggleClass('hidden');
+    $(this).siblings('button').toggleClass('hidden');
+  })
+
+  //add team button shows add team form
+  $('#add').on('click', function() {
+    $('#addTeam').removeClass('hidden');
+  })
+
+  $('#submitNew').on('click', function() {
+    createNewTeam(this)
+  });
+
+  //this adds all the teams to the page on load
+  try {myDataRef.on('child_added', function(snapshot) {
+    /* This is a way to add new fields to the database for future use
+    var newRef = myDataRef.child(snapshot.val().team_abbrev);
+    newRef.update({active: 1}); */
+    var team = snapshot.val();
+    displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time_num, team.time, team.website, team.active);
+  }); }
+  catch(err) {
+    alert("failed to load teams");
+
+  myDataRef.on('child_changed', function(snapshot) {
+    var team = snapshot.val();
+    displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time_num, team.time, team.website, team.active);
+  });
+
+}
+
 });
 
  function searchGroups() {
   event.preventDefault();
   $('#searchResult').contents().each(function() {
-      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault()}
+      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault();}
   });
   try {
-    try { $('#searchResult').removeClass('hidden'); } catch(err) {event.preventDefault();};
+    try { $('#searchResult').removeClass('hidden'); } catch(err) {event.preventDefault();}
     var searchRegex = new RegExp($('#wordSearch').val(), 'i');
     $('#searchResult').contents().each(function() {
       if (searchRegex.test(this.outerHTML)) {
@@ -201,48 +284,8 @@ $('document').ready(function() {
   } catch(err) {
     event.preventDefault();
     $('#searchResult').contents().each(function() {
-      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault()}
+      try {$('#'+this.id).addClass('hidden'); } catch(err) {event.preventDefault();}
     });
     alert('invalid');
   }
-}
-
-function revealAdd() {
-  $('#addTeam').removeClass('hidden');
-}
-
-function ShowAddNewTeam(){
-  //input form appears and search box hidden after "add Team" button clicked
-  $("#addTeam").removeClass('hidden');
-  $("#search-box").addClass('hidden');
-}
-
-function submitNew(){
-  //back to search/add step and input form hidden after "submit" button clicked
-  $("#search-box").removeClass('hidden');
-  $("#addTeam").addClass('hidden');
-}
-
-function edit1(){
-  //existing team edit form appears and search results hidden after "edit" button clicked
-  $("#editTeam").removeClass('hidden');
-  $("#searchResult").addClass('hidden');
-}
-
-function submitChanges(){
-  //back to search/add step and edit form hidden after "submit" button clicked
-  $("#search-box").removeClass('hidden');
-  $("#team-objects").addClass('hidden');
-}
-
-function addNewAOI(){
-  //input for new AOI shows up when "none of the above" selected
-  var newselection= document.getElementById("editAOI").value;
-  var editselection= document.getElementById("newAOI").value;
-  
-      if(newselection = "New AOI")
-       $("#editAOIinput").removeClass('hidden');
-       
-       if(editselection = "New AOI")
-       $("#newAOIinput").removeClass('hidden');
 }

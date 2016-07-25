@@ -32,15 +32,13 @@
       <fieldset>
         <h2>Welcome!</h2>
 
-        <label class = "login-label">Login: </label>
         <input placeholder="Username" id="initialUser" type="text" name="Username" value="" size="25" maxlength="25" autocomplete="false"><br>
 
         <br>
 
-        <label class="login-label">Password: </label>
         <input placeholder="Password" id="initialPass" type="password" name="Password" value="" size="25" maxlength="25" autocomplete="off"/><br>
         
-        <button><a href="#" class="enter_link">Login</a></button>
+        <button id="enter">Login</button>
 
       </fieldset>
 
@@ -94,8 +92,8 @@
 
 
       <!--logout function-->
-          <div id="logout">
-            <button onclick="logout()" style="float: right;">Log Out</button>
+          <div>
+            <button id='logout'style="float: right;">Log Out</button>
           </div>
 
       <!--logout function ends-->
@@ -105,15 +103,12 @@
               
               <div id="search">
 
-                <form action="javascript:void(0);" method="GET">
-
-
                   <div class="clearfix">
 
-                    <input id = "wordSearch" type="search" name="search" value="Search"> 
+                    <input id = "wordSearch" type="search" name="search" placeholder="Search"> 
                     <input id = "searchButton" type="submit" value="Search" class="button">
                     
-                    <input type="submit" value="Add Team" class="button">
+                    <input id = "add"type="submit" value="Add Team" class="button">
 
                   </div>
 
@@ -121,13 +116,64 @@
 
               </div> <!-- end search -->
 
+        <!-- new team -->
+        <div id="addTeam" class="addTeam" >
+          <h3>Add New Team Information below:</h3>
+            <form>
+              <label>Team Name:</label> 
+              <input type="text" class="edit_team_name" value=""> 
 
+              <label>Team Acronym: </label>
+              <input type="text" class="edit_abbrev" value=""> 
+
+              <label>Website: </label>
+              <input type="text" class="edit_web" value=""> 
+              <label>Day: </label>
+
+              <select class="editDay">
+                <option value="Monday">Monday</option> 
+                <option value="Tuesday">Tuesday</option> 
+                <option value="Wednesday">Wednesday</option> 
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option> 
+              </select>
+
+              <label>Time: </label>
+              <select class = "editTime"> 
+                <option value="1">8:30 AM - 10:20 AM</option> 
+                <option value="2">10:30 AM - 12:20 PM</option> 
+                <option value="3">1:30 PM - 3:20 PM</option> 
+                <option value="4">3:30 PM - 5:20 PM</option> 
+                <option value="5">Other</option> 
+              </select> 
+
+              <label>Area of Impact: </label> 
+              <select class = "editAOI"> 
+                <option value="Access & Abilities">Access & Abilities</option> 
+                <option value="Education & Outreach">Education & Outreach</option> 
+                <option value="Environment">Environment</option> 
+                <option value="Human Services">Human Services</option> 
+              </select>'
+
+              <!--<label>Preferred Majors: <input type="text" name="editMajor" class="editMajor" size="30" placeholder=""> --> 
+
+              <label>Description: </label> 
+              <TEXTAREA class="desc" ROWS=6 > Enter description </TEXTAREA> 
+
+              <label>Active: </label>
+              <select class= "editAct"> 
+                <option value=1>Yes</option> 
+                <option value=0>No</option> 
+              </select>  
+            </form> <!--done collecting changes--> <!--submit changes button --> 
+            <button id="submitNew" type="button" value="Submit">Submit </button>
+      </div>
 
       <!--search result (style="display:none;")-->
 
           <div id="searchResult" >
 
-            <h3>Team Search Results: </h3><br>
+            <!--<h3>Team Search Results: </h3><br>
                   <div class ="resultinfo" id ="teamAcronym">
                       <label>Team Name: 
                       <a>Team A </a> 
@@ -156,7 +202,7 @@
 
                       <input id="editbutton" type="submit" value="Edit" />
                       <input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" />
-                  </div>
+                  </div>  -->
           </div>
 
       <!--search result ends-->
@@ -165,190 +211,9 @@
 
       <!--new team adding session (style="display:none;)"-->
 
-        <div id="addTeam" class="addTeam" >
-          <h3>Add New Team Information below:</h3><br>
 
-            <form>
-              <label>Team Name: 
-
-              <input type="text" name="newName" id="newName" placeholder="Enter team name">
-              </label>
-
-              <label>Team Acronym: 
-
-              <input type="text" name="newAc" id="newAc" placeholder="Enter team acronym" >
-              </label>
-
-              <label>Website: 
-
-              <input type="text" name="newWeb" id="newWebsite" size="50" placeholder="Enter a website">
-              </label>
-
-              <label>Day: 
-
-              <select id="newDay">
-                <option>Choose a Day</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-              </select>
-              </label>
-
-              <label>Time: 
-
-              <select id = "newTime">
-                <option>Choose a Time</option>
-                <option value="1">8:30 AM - 10:20 AM</option>
-                <option value="2">10:30 AM - 12:20 PM</option>
-                <option value="3">1:30 PM - 3:20 PM</option>
-                <option value="4">3:30 PM - 5:20 PM</option>
-                <option value="5">Other</option>
-              </select>
-              </label>
-
-              <label>Area of Impact: 
-
-              <select id = "newAOI" onchange="addNewAOI();">
-                <option>Choose an Area</option>
-                <option value="Access & Abilities">Access & Abilities</option>
-                <option value="Education & Outreach">Education & Outreach</option>
-                <option value="Environment">Environment</option>
-                <option value="Human Services">Human Services</option>
-                <option value="New AOI">None of the above</option> 
-              </select>
-
-                  <div class="hidden" id="newAOIinput"> 
-                     <label >Input New Area of Impact:
-                      <input type="text" id="newAOIOption" size="30" placeholder="Enter New Area of Impact">  <!--shows up only when "input new area of impact" is selected-->
-                  </div>
-
-              </label>
-
-              
-
-              <label>Preferred Majors: 
-              <input type="text" name="newMajor" id="newMajor" size="30" placeholder="Enter Preferred Majors">
-
-              </label>
-
-
-              <label>Description: <br>
-              <TEXTAREA NAME="Description" id="newDesc" ROWS=3 COLS=30 ></TEXTAREA>
-              </label>
-
-              <label>Active: 
-
-              <select id= "addAct">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-              </label>
-
-            </form>
-
-
-          <!--submit new team -->
-          <input id="newTsubmit" type="submit" value="Submit" >
-          <!--done with submit button-->
-
-      </div>
 
       <!-- all the teams are going here, change from all to just search results here. -->
-
-
-
-      <!--list of search results team info will be displayed below -->
-      <div id="EditTeam" class="EditTeam" >
-          
-          <!--form to collect changes-->
-          <h3 class="changeditem">Team A</h3><br>
-
-            <form>
-              <label>Team Name: 
-
-              <input type="text" id="team_name" placeholder="">
-              </label><br>
-
-              <label>Team Acronym: 
-
-              <input type="text" id="abbrev" placeholder="" >
-              </label><br>
-
-              <label>Website: 
-
-              <input type="text" id="web" size="50" placeholder="">
-              </label><br>
-
-              <label>Day: 
-
-              <select id="editDay">
-                <option>Choose a Day</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-              </select>
-              </label><br>
-
-              <label>Time: 
-
-              <select id = "editTime">
-                <option>Choose a Time</option>
-                <option value="1">8:30 AM - 10:20 AM</option>
-                <option value="2">10:30 AM - 12:20 PM</option>
-                <option value="3">1:30 PM - 3:20 PM</option>
-                <option value="4">3:30 PM - 5:20 PM</option>
-                <option value="5">Other</option>
-              </select>
-              </label><br>
-
-              <label>Area of Impact: 
-
-              <select id = "editAOI" onchange="addNewAOI();">
-                <option>Choose an Area</option>
-                <option value="Access & Abilities">Access & Abilities</option>
-                <option value="Education & Outreach">Education & Outreach</option>
-                <option value="Environment">Environment</option>
-                <option value="Human Services">Human Services</option>
-                <option value="New AOI">None of the above</option> 
-              </select><br>
-
-                  <div class="hidden" id="editAOIinput"> 
-                     <label >Input New Area of Impact:
-                      <input type="text" id="editAOIoption" size="30" placeholder="Enter New Area of Impact">  <!--shows up only when "input new area of impact" is selected-->
-                  </div>
-
-              </label>
-
-
-              <label>Preferred Majors: 
-              <input type="text" name="editMajor" id="editMajor" size="30" placeholder="">
-
-              </label><br>
-
-
-              <label>Description: <br>
-              <TEXTAREA id="desc" ROWS=3 COLS=30 ></TEXTAREA>
-              </label><br>
-
-              <label>Active: 
-
-              <select id= "editAct">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-              </label><br>
-
-            </form>
-          <!--done collecting changes-->
-
-          <!--submit changes button -->
-          <input id="submitchange" type="submit" value="Submit" >
-      </div>
-      <!--team edit ends-->
       
     </div>
 

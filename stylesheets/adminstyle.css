@@ -1,17 +1,3 @@
-/* line 5, ../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-html, body, div, span, fieldset, label, legend,
-table, caption, footer, header,
-menu, nav, section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-
-}
- 
-
 /* line 45, ../sass/screen.scss */
 html, body {
   font: 16px "Open Sans";
@@ -49,7 +35,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url("../images/splash2.jpg") center center no-repeat;
+  background: url("../images/splash2.jpg") no-repeat center center;
   background-size: cover;
   cursor: default;
   -moz-user-select: -moz-none;
@@ -189,11 +175,12 @@ h3 {
   margin:0 auto;
   padding:50px 0 10px 0;
   text-align:left;
+  border: 0px;
 }
 
 
 #sidebar {
-  position: fixed;
+  position: absolute;
   z-index: 50;
   top: 0;
   left: 0;
@@ -378,10 +365,9 @@ fieldset p, fieldset div {
 
 #searchResult{
   margin:20px;
-  border:solid;
-  border-radius:15px;
+  border: none;
   padding:20px;
-  width:50%;
+  width:75%;
 }
 
 .resultinfo{
@@ -394,7 +380,7 @@ fieldset p, fieldset div {
   width:85%;
 }
 
-.resultinfo > label {
+/* .resultinfo > label {
   display:block;
 }
 
@@ -419,7 +405,7 @@ fieldset p, fieldset div {
   border-radius: 10px;
   font-size: 15px;
 
-}
+} */
 
 #addTeam{
   margin:20px;
@@ -429,27 +415,44 @@ fieldset p, fieldset div {
   padding:20px;
 }
 
-.addTeam > label{
-  display:block;
+#addTeam label {
+  display: block;
+  margin-bottom: 10px;
+  float: left;
 }
 
-.addTeam > input:not([id="newTsubmit"]), 
-.addTeam > select {
-  position:absolute;
-  
+#addTeam input {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  display: inline-block;
+  overflow: hidden;
+  border-bottom: 1px, solid, blue;
 }
 
-.addTeam > input[id="newTsubmit"] {
-  background: #849E2A;
-  color: #fff;
-  font-weight: bold;
-  margin-left: 2px;
-  margin-top:5px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  font-size: 15px;
-
+#addTeam textarea {
+  width: 100%;
+  display: inline-block;
+  overflow: scroll;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  border-radius: 15px;
+  transition: box-shadow 0.3s, border 0.3s;
 }
+
+#addTeam select {
+  width: 100%;
+  display: inline-block;
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+#addTeam option {
+  margin: 10px 0px;
+  text-align: center;
+}
+
 
 .EditTeam{
   margin:20px;
@@ -492,9 +495,70 @@ fieldset p, fieldset div {
   display:none;
 }
 
+input {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  border-radius: 15px;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+input:focus {
+    border: solid 1px #707070;
+    box-shadow: 0 0 5px 1px #969696; 
+    outline: none;
+}
 
+#enter {
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: black;  
+  font-size: 20px;
+  outline: none;
+}
 
+.resultinfo {
+  margin-bottom: 10px;
+}
 
+.resultinfo  label {
+  display: block;
+  margin-bottom: 10px;
+  float: left;
+}
 
+.resultinfo  input {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  display: inline-block;
+  overflow: hidden;
+  border-bottom: 1px, solid, blue;
+}
 
+.resultinfo textarea {
+  width: 100%;
+  display: inline-block;
+  overflow: scroll;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  border-radius: 15px;
+  transition: box-shadow 0.3s, border 0.3s;
+}
 
+.resultinfo select {
+  width: 100%;
+  display: inline-block;
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.resultinfo option {
+  margin: 10px 0px;
+  text-align: center;
+}
+
+/* Button */
