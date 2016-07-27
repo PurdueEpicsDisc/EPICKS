@@ -11,6 +11,7 @@ if (authData) {
 function authHandler(error, authData) {
   if (error) {
     console.log("Login Failed!", error);
+    $('#loginFeedback').append('Unsuccessful login, please try again')
   } else if (authData) {
     console.log("Authenticated successfully with payload:", authData);
     $('#searchResult').addClass('hidden');
@@ -34,7 +35,8 @@ function login(e) {
 
 function edit(thing) { //add new group function
   event.preventDefault();
-  var form = thing.parentElement.children[1];
+  var form = thing.parentElement.children[2];
+
   if(!form.children[1].value) {
     return;
   }
@@ -82,12 +84,18 @@ function edit(thing) { //add new group function
      active: activei
   });
 
+  var span = thing.parentElement.children[3];
+  if (span.innerHTML == " ") {
+    span.innerHTML = "Changes successfully commited";
+  } else {
+    span.innerHTML = span.innerHTML + " | "
+  }
 }
 
 //creates a new team from teamSubmit
 function createNewTeam(thing) {
   event.preventDefault();
-  var form = thing.parentElement.children[1];
+  var form = thing.parentElement.children[2];
   if(!form.children[1].value) {
     return;
   }
@@ -147,11 +155,11 @@ document.location.reload(true);
 function displayTeamInfo(abbrev, desc, aoi, day, name, time_num, time, website, active) {
   //remember to get rid of the onclick here
   //$("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><label>Team Name: <a>'+name+'</a> </label><label>Acronym: <a>'+abbrev+'</a></label><label>Website: <a>'+website+'  </a></label><label>Day: <a>'+day+'  </a></label><label>Time: <a>'+time+' </a></label><label>Area of Impact: <a>'+aoi+'  </a></label><label>Description: <a> '+desc+' </a></label><label>Active: <a> '+active+' </a></label><input id="editbutton" type="submit" value="Edit" /><input id="deletebutton" type="submit" value="Delete" onclick="goodbye()" /></div>'); 
-  $("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><!--form to collect changes--><h3 class="changeditem">'+name+'</h3><form class="hidden"><label>Team Name:</label> <input type="text" class="edit_team_name" value="'+name+'"> <label>Team Acronym: </label><input type="text" class="edit_abbrev" value="'+abbrev+'" > <label>Website: </label><input type="text" class="edit_web" value="'+website+'"> <label>Day: </label><select class="editDay">'
+  $("#searchResult").append('<div class ="resultinfo" id='+abbrev+'><button class="activeButton" type="button" value="'+abbrev+'" activeModifier="'+active+'"> </button><!--form to collect changes--><h3 class="changeditem">'+name+'</h3><form class="hidden"><label>Team Name:</label> <input type="text" class="edit_team_name" value="'+name+'"> <label>Team Acronym: </label><input type="text" class="edit_abbrev" value="'+abbrev+'" > <label>Website: </label><input type="text" class="edit_web" value="'+website+'"> <label>Day: </label><select class="editDay">'
     +'<option value="'+day+'">'+day+'</option> <option value="Monday">Monday</option> <option value="Tuesday">Tuesday</option> <option value="Wednesday">Wednesday</option> <option value="Thursday">Thursday</option> <option value="Friday">Friday</option> </select><label>Time: </label><select class = "editTime"> <option value="'+time_num+'">'+time+'</option> <option value="1">8:30 AM - 10:20 AM</option> <option value="2">10:30 AM - 12:20 PM</option> <option value="3">1:30 PM - 3:20 PM</option> <option value="4">3:30 PM - 5:20 PM</option> <option value="5">Other</option> </select> <label>Area of Impact: '
     +'</label> <select class = "editAOI"> <option value="'+aoi+'">'+aoi+'</option>'
     +' <option value="Access & Abilities">Access & Abilities</option> <option value="Education & Outreach">Education & Outreach</option> <option value="Environment">Environment</option> <option value="Human Services">Human Services</option> </select>'
-    +' <!--<label>Preferred Majors: <input type="text" name="editMajor" class="editMajor" size="30" placeholder=""> --> <label>Description: </label> <TEXTAREA class="desc" ROWS=6 >'+desc+'</TEXTAREA> <label>Active: </label><select class= "editAct"> <option value=1>Yes</option> <option value=0>No</option> </select>  </form> <!--done collecting changes--> <!--submit changes button --> <button class="submitchange hidden" type="button" onclick="edit(this)" value="Submit"> Submit </button></div>');
+    +' <!--<label>Preferred Majors: <input type="text" name="editMajor" class="editMajor" size="30" placeholder=""> --> <label>Description: </label> <TEXTAREA class="desc" ROWS=6 >'+desc+'</TEXTAREA> <label>Active: </label><select class= "editAct"> <option value=1>Yes</option> <option value=0>No</option> </select>  </form> <!--done collecting changes--> <!--submit changes button --><span class="hidden feedback"> </span> <button class="submitchange hidden" type="button" onclick="edit(this)" value="Submit"> Submit </button></div>');
         /* Pretty version of the unholy mess above
         '<div class ="resultinfo" id='+abbrev+'>
           <!--form to collect changes-->
@@ -233,15 +241,38 @@ $('document').ready(function() {
   //login when the login button is clicked
   $('#enter').click(login);
 
+
   //expand each team for editing
   $('#searchResult').on('click', '.changeditem', function() {
     $(this).siblings('form').toggleClass('hidden');
+    $(this).siblings('span').toggleClass('hidden');
     $(this).siblings('button').toggleClass('hidden');
+  })
+
+  $('#searchResult').on('click', '.activeButton', function() {
+    var teamName = $(this).val();
+    var active = $(this).attr("activeModifier");
+    active = 1 - active
+    var tempRef = myDataRef.child(teamName); 
+
+    //update the active state
+    tempRef.update({ 
+       active: active
+    });
+
+    $(this).attr("activeModifier", active);
+
+    if (active) {
+      $(this).css("background-color", "#4CAF50");
+    } else {
+      $(this).css("background-color", "#bb0000");
+    }
   })
 
   //add team button shows add team form
   $('#add').on('click', function() {
     $('#addTeam').removeClass('hidden');
+    $('searchResults').addClass('hidden');
   })
 
   $('#submitNew').on('click', function() {
@@ -255,6 +286,12 @@ $('document').ready(function() {
     newRef.update({active: 1}); */
     var team = snapshot.val();
     displayTeamInfo(team.team_abbrev, team.description, team.aoi, team.day, team.team_name, team.time_num, team.time, team.website, team.active);
+    
+    if (team.active) {
+      $('#'+team.team_abbrev).children('.activeButton').css("background-color", "#4CAF50");
+    } else {
+      $('#'+team.team_abbrev).children('.activeButton').css("background-color", "#bb0000");
+    }
   }); }
   catch(err) {
     alert("failed to load teams");
